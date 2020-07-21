@@ -1,6 +1,6 @@
 class Visitor < ApplicationRecord
   attribute :photo, :string, default: ''
-  enum status: {available: 0, not_available: 1}
+  enum status: {available: 0, notavailable: 1}
 
   belongs_to :security
   belongs_to :health
@@ -12,6 +12,9 @@ class Visitor < ApplicationRecord
 
   def self.search(visitor_dni)
     visitor_dni = visitor_dni.strip
-    ActiveRecord::Base.connection.execute("select id, dni, first_name, last_name from visitors where dni = #{visitor_dni}")
+    result = ActiveRecord::Base.connection.execute("select id, dni, first_name, last_name from visitors where dni = '#{visitor_dni}'").to_a
+    p '------------'
+    p result
+    result
   end
 end
