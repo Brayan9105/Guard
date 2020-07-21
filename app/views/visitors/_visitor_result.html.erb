@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th>Dni</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Options</th>
+  </tr>
+  <% if @visitors %>
+    <% @visitors.each do |visitor| %>
+      <tr>
+        <td><%= visitor.dni %></td>
+        <td><%= visitor.first_name %></td> 
+        <td><%= visitor.last_name %></td>
+        <td><%= button_tag 'Add', value: visitor.dni, id: "btn#{visitor.dni}" %> </td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  
   root 'page#dashboard'
   
   # Floors routes
@@ -9,6 +10,9 @@ Rails.application.routes.draw do
   
   # Offices routes
   resources :offices
+
+  # Visitors routes
+  resources :visitors
 
   # Admin routes
   devise_for :admin_users, ActiveAdmin::Devise.config
