@@ -1,0 +1,55 @@
+<div class="wrapper">
+  <!-- Sidebar -->
+  <nav id="sidebar">
+      <div class="sidebar-header">
+          <h3>Maus</h3>
+      </div>
+
+      <ul class="list-unstyled components">
+          <li>
+            <%= link_to 'Dashboard', root_path %>
+          </li>
+          <li>
+            <%= link_to 'Pisos', floors_path %>
+          </li>
+          <li>
+            <%= link_to 'Officinas', offices_path %>
+          </li>
+          <li>
+            <%= link_to 'Visitantes', visitors_path %>
+          </li>
+
+          <li>
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Visitas</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu">
+                  <li>
+                      <%= link_to 'Visitas activas', active_visit_path %>
+                  </li>
+                  <li>
+                    <%= link_to 'Historial de visitas', visit_history_path %>
+                  </li>
+                  <li>
+                    <%= link_to 'Registrar nueva visita', new_visit_path %>
+                  </li>
+              </ul>
+          </li>
+          <li>
+              <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+          </li>
+      </ul>
+  </nav>
+
+  <div id="content" class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button type="button" id="sidebarCollapse" class="btn btn-info">
+            <i class="fas fa-align-left"></i>
+            <span>Mover Menu</span>
+        </button>
+    </nav>
+
+    <%= render 'layouts/messages' %>
+        
+    
+
+
+

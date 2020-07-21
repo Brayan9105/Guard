@@ -10,6 +10,16 @@
   </head>
 
   <body>
-    <%= yield %>
+    <% if user_signed_in? %>
+      <%= render 'layouts/navbar' %>          
+        <%= yield %>
+        </div>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
+
+      
   </body>
+  <%= javascript_pack_tag 'navbar' %>
 </html>
