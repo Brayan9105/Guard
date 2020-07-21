@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <%= link_to 'Regresar', offices_path, class: 'btn btn-secondary mb-5' %>
+  <div class="h1">
+    <%= @office.name.capitalize %>
+    <%= link_to 'Editar', edit_office_path(@office), class: 'btn btn-primary' %> 
+  </div>
+  <p>
+    <%= @office.floor.name %>
+  </p>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <tr>
+              <th class="center-text">Visitantes</th>
+            </tr>
+            <tr>
+              <td class="center-text"><%= @visits.count %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-5">
+  <%= render 'visits/active_visits', obj: @visits%>
+</div>

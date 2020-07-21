@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+  
   root 'page#dashboard'
   
   # Floors routes
   resources :floors
   get 'floor_offices/:id', to: 'offices#floor_offices'
   get 'search_visitor/:dni', to: 'visitors#search_visitor'
+  
+  # Offices routes
+  resources :offices
 
   # Admin routes
   devise_for :admin_users, ActiveAdmin::Devise.config
