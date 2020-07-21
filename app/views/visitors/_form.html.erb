@@ -37,15 +37,15 @@
   <div class="row">
     <div class="col-4">
       <div class="form-group">
-        <%= form.label :eps %>
-        <%= form.collection_select :eps, Health.all(), :id, :name, { :prompt => 'Seleccione la eps' }, {class: 'form-control'} %> 
+        <%= form.label :health_id, 'Eps' %>
+        <%= form.collection_select :health_id, Health.all(), :id, :name, { :prompt => 'Seleccione la eps' }, {class: 'form-control'} %> 
       </div>
     </div>
 
     <div class="col-4">
       <div class="form-group">
-        <%= form.label :arl %>
-        <%= form.collection_select :arl, Security.all(), :id, :name, { :prompt => 'Seleccione la arl' }, {class: 'form-control'} %> 
+        <%= form.label :_id, 'Arl' %>
+        <%= form.collection_select :security_id, Security.all(), :id, :name, { :prompt => 'Seleccione la arl' }, {class: 'form-control'} %> 
       </div>
     </div>
   </div>

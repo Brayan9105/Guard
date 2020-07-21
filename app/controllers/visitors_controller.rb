@@ -57,6 +57,6 @@ class VisitorsController < ApplicationController
     end
 
     def visitor_params
-      params.require(:visitor).permit(:dni, :first_name, :last_name, :eps, :arl, :photo)
+      params.require(:visitor).permit(:dni, :first_name, :last_name, :health_id, :security_id, :photo)
     end
 end
