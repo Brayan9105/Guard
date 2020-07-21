@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <%= link_to 'Regresar', active_visit_path, class: 'btn btn-secondary mb-5' %>
+  <%= form_with(model: @visit, local: true) do |form| %>
+    <% if @visit.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@visit.errors.count, "error") %> prohibited this visit from being saved:</h2>
+  
+        <ul>
+          <% @visit.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+          <%= form.label :token_id, 'Ficha' %>
+          <%= form.number_field :token_id, class: 'form-control' , readonly: true%>
+        </div>
+      </div>
+  
+      <div class="col-4">
+        <div class="form-group">
+          <%= form.label 'Cedula' %>
+          <input type="number" class="form-control" disabled="true" value= <%= @visit.visitor.dni%> >
+          <%= form.hidden_field :visitor_id %>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+          <%= form.label :full_name, 'Nombre completo' %>
+          <input type="text" class="form-control" disabled="true" value= <%= "#{@visit.visitor.first_name} #{@visit.visitor.last_name}" %> >
+        </div>
+      </div>
+      
+      <div class="col-4">
+        <div class="form-group">
+          <%= form.label :in_temperature, 'Temperatura de salida' %>
+          <%= form.number_field :out_temperature, class: 'form-control', placeholder: 'Digite la temperatura' %>
+        </div>
+      </div>
+  
+    </div>
+    
+    <div class="form-group">
+      <%= form.submit 'Confirmar salida', class: 'btn btn-success' %>
+    </div>
+  
+  
+  <% end %>
+</div>

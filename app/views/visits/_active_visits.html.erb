@@ -1,0 +1,29 @@
+<div class="h2">
+  Visitas activas
+</div>
+<div class="card">
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>Oficina</th>
+          <th>Cedula</th>
+          <th>Nombre completo</th>
+          <th>Hora de ingreso</th>
+          <th>Tem. Ingreso</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <% obj.each do |visit| %>
+        <tr>
+          <td><%= visit.office.name %></td>
+          <td><%= visit.visitor.dni %></td>
+          <td><%= "#{visit.visitor.first_name} #{visit.visitor.last_name}" %></td>
+          <td></td>
+          <td><%= visit.in_temperature %></td>
+          <td><%= link_to 'Ver visita', visit, class: 'btn btn-info' %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

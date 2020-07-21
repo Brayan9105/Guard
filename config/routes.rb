@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  
-  
   root 'page#dashboard'
   
   # Floors routes
@@ -13,6 +11,12 @@ Rails.application.routes.draw do
 
   # Visitors routes
   resources :visitors
+
+  # Visits routes
+  resources :visits, except: [:index]
+  put 'give_out/:visit_id', to: 'visits#give_out'
+  get 'visit_history', to: 'visits#visit_history', as: :visit_history
+  get 'active_visit', to: 'visits#active_visit', as: :active_visit
 
   # Admin routes
   devise_for :admin_users, ActiveAdmin::Devise.config

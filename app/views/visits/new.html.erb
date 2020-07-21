@@ -1,0 +1,43 @@
+<div class="container-fluid">  
+  <h1 class="mb-3">Registrar visita</h1>
+
+
+  <div class="form-group">
+    <label for="">Buscar visitante</label>
+    <div class="row">
+      <div class="col-6">
+        <input type="number" id="searchDni" placeholder="Digite la cedula del visitante" class="form-control">
+      </div>
+      <div class="col-5">
+        <button id="btnSearch" class="btn btn-info">Buscar</button>
+        <%= link_to 'Agregar visitante', new_visitor_path, class: 'btn btn-success' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>Cedula</th>
+            <th>Nombre completo</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tr>
+          <td hidden="true" id="tdId"></td>
+          <td id="tdDni"></td>
+          <td id="tdFullname"></td> 
+          <td id="tdOptions"></td> 
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <hr class="my-5">
+
+  <%= render 'form', visit: @visit %>
+</div>
+
+<%= javascript_pack_tag 'select_office' %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_21_161820) do
+ActiveRecord::Schema.define(version: 2020_07_21_162740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,8 +121,28 @@ ActiveRecord::Schema.define(version: 2020_07_21_161820) do
     t.index ["security_id"], name: "index_visitors_on_security_id"
   end
 
+  create_table "visits", force: :cascade do |t|
+    t.integer "in_temperature"
+    t.integer "out_temperature"
+    t.integer "status", default: 0
+    t.bigint "visitor_id", null: false
+    t.bigint "floor_id", null: false
+    t.bigint "office_id", null: false
+    t.bigint "token_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["floor_id"], name: "index_visits_on_floor_id"
+    t.index ["office_id"], name: "index_visits_on_office_id"
+    t.index ["token_id"], name: "index_visits_on_token_id"
+    t.index ["visitor_id"], name: "index_visits_on_visitor_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "offices", "floors"
   add_foreign_key "visitors", "healths"
   add_foreign_key "visitors", "securities"
+  add_foreign_key "visits", "floors"
+  add_foreign_key "visits", "offices"
+  add_foreign_key "visits", "tokens"
+  add_foreign_key "visits", "visitors"
 end

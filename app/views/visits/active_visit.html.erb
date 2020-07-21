@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row mb-3">
+    <div class="col-10">
+      <h1>Visitas activas</h1>
+    </div>
+    <div class="col-2">
+      <%= link_to 'Agregar visita', new_visit_path, class: 'btn btn-success' %>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>Cedula</th>
+            <th>Nombre completo</th>
+            <th class="center-text">Piso</th>
+            <th class="center-text">Oficina</th>
+            <th class="center-text">Temp. Entrada</th>
+            <th class="center-text">Hora entrada</th>
+            <th class="center-text">Opciones</th>
+          </tr>
+        </thead>
+        <% @visits.in.each do |visit| %>
+          <tr>
+            <td><%= visit.visitor.dni %></td>
+            <td><%= "#{visit.visitor.first_name} #{visit.visitor.last_name}" %></td>
+            <td class="center-text"><%= visit.floor.name %></td>
+            <td class="center-text"><%= visit.office.name %></td>
+            <td class="center-text"><%= visit.in_temperature %>°</td>
+            <td class="center-text"><%= visit.created_at.strftime("%r") %></td>
+            <td class="center-text">
+              <%= link_to 'Dar salida', edit_visit_path(visit), class: 'btn btn-warning' %>
+            </td>
+          </tr>
+        <% end %>
+        
+      </table>
+    </div>
+  </div>
+</div>
