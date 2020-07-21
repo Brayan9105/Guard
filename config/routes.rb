@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
+  root 'page#dashboard'
+  
+  # Floors routes
+  resources :floors
+  get 'floor_offices/:id', to: 'offices#floor_offices'
+  get 'search_visitor/:dni', to: 'visitors#search_visitor'
+
+  # Admin routes
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  root 'page#dashboard'
-
   
+  # User routes
   devise_for :users, :skip => [:registrations] 
   as :user do
     get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'

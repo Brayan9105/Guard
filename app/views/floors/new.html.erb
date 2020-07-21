@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <%= link_to 'Regresar', floors_path, class: 'btn btn-secondary mb-5' %>
+  
+  <h1 class="mb-3">Nuevo piso</h1>
+  
+  <div class="row">
+    <div class="col-6">
+      <%= render 'form', floor: @floor %>
+    </div>
+  
+    <div class="col-5">
+      <h3>Pisos existentes</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <% Floor.all.each do |floor| %>
+          <tr>
+            <td><%= floor.name.capitalize %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+  </div>
+
+</div>

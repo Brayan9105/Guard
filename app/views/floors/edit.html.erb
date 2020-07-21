@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <%= link_to 'Regresar', floors_path, class: 'btn btn-secondary mb-5' %>
+  
+  <h1 class="mb-3">Editar piso</h1>
+  <div class="row">
+    <div class="col-6">
+      <%= render 'form', floor: @floor %>
+    </div>
+  </div>
+  
+</div>

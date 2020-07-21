@@ -1,0 +1,57 @@
+<div class="container-fluid">    
+  <%= link_to 'Regresar', floors_path, class: 'btn btn-secondary mb-5' %>
+  
+  <div class="h1">
+    <%= @floor.name.capitalize %>
+    <%= link_to 'Editar', edit_floor_path(@floor), class: 'btn btn-primary' %> 
+  </div>
+  <p>
+    <%= @floor.description.capitalize %>
+  </p>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th class="center-text">Oficinas</th>
+                <th class="center-text">Visitantes</th>
+              </tr>
+              <tr>
+            </thead>
+              <td class="center-text"><%= @floor.offices.count %></td>
+              <td class="center-text"><%= @floor.visits.in.count %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-5">
+  <div class="h2">
+    Oficinas
+  </div>
+  <div class="card">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>Nombre</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <% @floor.offices.each do |office| %>
+          <tr>
+            <td><%= link_to office.name.capitalize, office %></td>
+            <td><%= link_to 'Ver oficina', office, class: 'btn btn-info' %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  
+  <hr class="my-5">
+  <%= render 'visits/active_visits', obj: @visits %>
+</div>  

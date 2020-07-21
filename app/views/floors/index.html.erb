@@ -1,0 +1,40 @@
+
+<div class="container-fluid">
+  
+  <div class="row mb-3">
+    <div class="col-10">
+      <h1>Pisos</h1>
+    </div>
+    <div class="col-2">
+      <%= link_to 'Agregar piso', new_floor_path, class: 'btn btn-success' %>
+    </div>
+  </div>
+  
+  <div class="card">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th colspan="2">Opciones</th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          <% @floors.each do |floor| %>
+            <tr>
+              <td><%= link_to floor.name, floor %></td>
+              <td><%= floor.description %></td>
+              <td>
+                <%= link_to 'Editar', edit_floor_path(floor), class: 'btn btn-primary' %>
+                <%= link_to 'Eliminar', floor, method: :delete, data: { confirm: 'Esta seguro de eliminar el piso?' }, class: 'btn btn-danger' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>  
+    </div>  
+  </div>
+
+</div>
