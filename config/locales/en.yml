@@ -31,3 +31,11 @@
 
 en:
   hello: "Hello world"
+  helpers:
+    submit:
+      create: "Crear"
+      update: "Actualizar"
+  devise:
+    sessions:
+      user:
+        signed_in: 'Bienvenido'
