@@ -16,6 +16,7 @@ es:
         description: 'Descripción'
       office:
         name: 'Nombre'
+        floor_id: 'Piso'
       healt:
         name: 'Nombre'
       security:
@@ -33,6 +34,7 @@ es:
         floor_id: 'Piso'
         office_id: 'Oficina'
         office: 'Oficina'
+        token_id: 'Ficha'
         visitor_id: 'Visitante'
         visitor: 'Visitante'
         in_temperature: 'Temperature de ingreso'

@@ -29,7 +29,7 @@
 
     <div class="col-4">
       <div class="form-group">
-        <%= form.label :in_temperature, 'Temperatura de entrada' %>
+        <%= form.label :in_temperature %>
         <%= form.number_field :in_temperature, class: 'form-control', placeholder: 'Digite la temperatura' %>
       </div>
     </div>
@@ -38,13 +38,13 @@
   <div class="row">
     <div class="col-4">
       <div class="form-group">
-        <%= form.label :floor_id, 'Piso' %>
+        <%= form.label :floor_id %>
         <%= form.collection_select :floor_id, Floor.all(), :id, :name, { :prompt => 'Seleccione el piso' }, {class: 'form-control'} %>
       </div>
     </div>
 
     <div class="col-4">
-      <%= form.label :office_id, 'Oficina' %>
+      <%= form.label :office_id %>
       <div class="form-group">
         <select name="visit[office_id]" id="office-select" class="form-control">
           <option>Seleccione la oficina</option>
@@ -54,7 +54,7 @@
 
     <div class="col-4">
       <div class="form-group">
-        <%= form.label :token_id, 'Ficha' %>
+        <%= form.label :token_id %>
         <%= form.collection_select :token_id, Token.all.enable, :id, :name, {}, {class: 'form-control'} %> 
       </div>
     </div>

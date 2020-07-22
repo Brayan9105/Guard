@@ -14,21 +14,21 @@
   <div class="row">
     <div class="col-4">
       <div class="form-group">
-        <%= form.label :dni, 'Cedula' %>
+        <%= form.label :dni %>
         <%= form.number_field :dni, class: 'form-control', placeholder: 'Digita numero cedula' %>
       </div>
     </div>
 
     <div class="col-4">
       <div class="form-group">
-        <%= form.label :first_name, 'Nombre' %>
+        <%= form.label :first_name %>
         <%= form.text_field :first_name, class: 'form-control', placeholder: 'Digitar nombre' %>
       </div>
     </div>
 
     <div class="col-4">
       <div class="form-group">
-        <%= form.label :last_name, 'Apellido' %>
+        <%= form.label :last_name %>
         <%= form.text_field :last_name, class: 'form-control', placeholder: 'Digitar tu apellido' %>
       </div>
     </div>
@@ -37,14 +37,14 @@
   <div class="row">
     <div class="col-4">
       <div class="form-group">
-        <%= form.label :health_id, 'Eps' %>
+        <%= form.label :health_id %>
         <%= form.collection_select :health_id, Health.all(), :id, :name, { :prompt => 'Seleccione la eps' }, {class: 'form-control'} %> 
       </div>
     </div>
 
     <div class="col-4">
       <div class="form-group">
-        <%= form.label :_id, 'Arl' %>
+        <%= form.label :security_id %>
         <%= form.collection_select :security_id, Security.all(), :id, :name, { :prompt => 'Seleccione la arl' }, {class: 'form-control'} %> 
       </div>
     </div>
