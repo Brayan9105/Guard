@@ -29,7 +29,7 @@
             <td class="center-text"><%= visit.floor.name %></td>
             <td class="center-text"><%= visit.office.name %></td>
             <td class="center-text"><%= visit.in_temperature %>°</td>
-            <td class="center-text"><%= visit.created_at.strftime("%r") %></td>
+            <td class="center-text"><%= visit.created_at.in_time_zone('America/Bogota').strftime("%r") %></td>
             <td class="center-text">
               <%= link_to 'Dar salida', edit_visit_path(visit), class: 'btn btn-warning' %>
             </td>

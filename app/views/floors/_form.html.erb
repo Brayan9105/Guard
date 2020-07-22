@@ -1,7 +1,7 @@
 <%= form_with(model: floor, local: true) do |form| %>
   <% if floor.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(floor.errors.count, "error") %> prohibited this floor from being saved:</h2>
+      <h2>Los siguientes errores han evitado la creacion del piso:</h2>
 
       <ul>
         <% floor.errors.full_messages.each do |message| %>
@@ -13,7 +13,7 @@
 
   
     <div class="form-group">
-        <%= form.label :name, 'Nombre' %>
+        <%= form.label :name %>
         <%= form.text_field :name, class: 'form-control', placeholder: 'Nombre del piso' %>
     </div>
   

@@ -18,7 +18,7 @@
       <div class="row">
         <div class="col-4 center-text">
           <h4>Hora de ingreso</h4>
-          <div class="badge bg-info text-white px-3 py-2"><%= @visit.created_at.strftime("%R %P") %></div>
+          <div class="badge bg-info text-white px-3 py-2"><%= @visit.created_at.in_time_zone('America/Bogota').strftime("%R %P") %></div>
         </div>
       
           
@@ -28,7 +28,7 @@
             <% if @visit.created_at == @visit.updated_at %>
               Sin tomar
             <% else %>
-              <%= @visit.updated_at.strftime("%R %P") %>
+              <%= @visit.updated_at.in_time_zone('America/Bogota').strftime("%R %P") %>
             <% end %>
           </div>
         </div>

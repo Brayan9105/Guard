@@ -1,4 +1,21 @@
 <div class="container-fluid">
-  <h1>Dashboard</h1>
-  
+  <h1>Tablero</h1>
+  <%= line_chart Visit.group_by_day(:created_at, last: 7).count,
+    colors: ['orange'],
+    prefix: 'Visitas: ',
+    suffix: ' ...'
+        
+  %>
+
+  <hr class="my-5">
+
+  <%= pie_chart Visit.group(:office_id).count, 
+        title: 'Los 3 pisos mas visitados',
+        library: {
+          legend: {
+            labelFormat: '{name} : {y} ({percentage}%)'
+          }
+        }
+
+  %>
 </div>

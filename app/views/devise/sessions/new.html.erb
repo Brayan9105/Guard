@@ -1,6 +1,5 @@
   
 <div class="row justify-content-md-center bg-blue">
-  
   <div class="row justify-content-md-center">
     <div class="card card-login">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -23,6 +22,12 @@
           <%= f.submit "Ingresar", class: 'btn btn-danger px-5' %>
         </div>
       <% end %>
+      <% flash.each do |name, msg| %>
+      <div class='alert alert-danger'>
+        <a href="#" class="close" data-dismiss="alert">&#215;</a>
+        <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+      </div>
+    <% end %>
     </div>
   </div>
 </div>
