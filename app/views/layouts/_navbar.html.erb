@@ -7,18 +7,31 @@
 
       <ul class="list-unstyled components">
           <li>
-            <%= link_to 'Dashboard', root_path %>
+            <%= link_to 'Tablero', root_path %>
           </li>
           <li>
             <%= link_to 'Pisos', floors_path %>
           </li>
           <li>
-            <%= link_to 'Officinas', offices_path %>
+            <%= link_to 'Oficinas', offices_path %>
           </li>
           <li>
             <%= link_to 'Visitantes',  visitors_path %>
           </li>
 
+          <li>
+            <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Seguridad social</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu1">
+                <li>
+                    <%= link_to 'Eps', healths_path %>
+                </li>
+                <li>
+                  <%= link_to 'Arl', securities_path %>
+                </li>
+            </ul>
+          </li>
+
+          <hr>
           <li>
               <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Visitas</a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
@@ -33,8 +46,9 @@
                   </li>
               </ul>
           </li>
-          <li>
-              <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+          <hr>
+          <li class="mt-5">
+              <%= link_to 'Cerrar sesion', destroy_user_session_path, method: :delete %>
           </li>
       </ul>
   </nav>
