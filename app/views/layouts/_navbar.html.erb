@@ -9,14 +9,12 @@
           <li>
             <%= link_to 'Tablero', root_path %>
           </li>
+          <hr class="separator">
           <li>
             <%= link_to 'Pisos', floors_path %>
           </li>
           <li>
             <%= link_to 'Oficinas', offices_path %>
-          </li>
-          <li>
-            <%= link_to 'Visitantes',  visitors_path %>
           </li>
 
           <li>
@@ -31,7 +29,10 @@
             </ul>
           </li>
 
-          <hr>
+          <hr class="separator">
+          <li>
+            <%= link_to 'Visitantes',  visitors_path %>
+          </li>
           <li>
               <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Visitas</a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
@@ -46,7 +47,7 @@
                   </li>
               </ul>
           </li>
-          <hr>
+          <hr class="separator">
           <li class="mt-5">
               <%= link_to 'Cerrar sesion', destroy_user_session_path, method: :delete %>
           </li>
