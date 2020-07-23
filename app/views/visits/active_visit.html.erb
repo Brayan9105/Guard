@@ -17,6 +17,7 @@
             <th>Nombre completo</th>
             <th class="center-text">Piso</th>
             <th class="center-text">Oficina</th>
+            <th class="center-text">Ficha</th>
             <th class="center-text">Temp. Entrada</th>
             <th class="center-text">Hora entrada</th>
             <th class="center-text">Opciones</th>
@@ -28,6 +29,7 @@
             <td><%= "#{visit.visitor.first_name} #{visit.visitor.last_name}" %></td>
             <td class="center-text"><%= visit.floor.name %></td>
             <td class="center-text"><%= visit.office.name %></td>
+            <td class="center-text"><%= visit.token.name %></td>
             <td class="center-text"><%= visit.in_temperature %>°</td>
             <td class="center-text"><%= visit.created_at.in_time_zone('America/Bogota').strftime("%r") %></td>
             <td class="center-text">

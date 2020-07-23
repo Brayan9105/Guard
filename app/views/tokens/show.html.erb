@@ -4,6 +4,9 @@
   <div class="h1">
     <%= @token.name.capitalize %>
   </div>
+  <p class="lead">
+    Estado: <span class="badge badge-danger">Ocupado</span>
+  </p>
   
   <div class="card">
     <div class="table-responsive">
@@ -13,18 +16,18 @@
             <th>Oficina</th>
             <th>Cedula</th>
             <th>Nombre completo</th>
-            <th>Hora de ingreso</th>
-            <th>Tem. Ingreso</th>
-            <th>Opciones</th>
+            <th class="center-text">Hora de ingreso</th>
+            <th class="center-text">Tem. Ingreso</th>
+            <th class="center-text">Opciones</th>
           </tr>
         </thead>
           <tr>
             <td><%= @visit.office.name %></td>
             <td><%= @visit.visitor.dni %></td>
             <td><%= "#{@visit.visitor.first_name} #{@visit.visitor.last_name}" %></td>
-            <td></td>
-            <td><%= @visit.in_temperature %></td>
-            <td><%= link_to 'Ver visita', @visit, class: 'btn btn-info' %></td>
+            <td class="center-text"><%= @visit.created_at.in_time_zone('America/Bogota').strftime("%r") %></td>
+            <td class="center-text"><%= @visit.in_temperature %>°</td>
+            <td class="center-text"><%= link_to 'Ver visita', @visit, class: 'btn btn-info' %></td>
           </tr>
       </table>
     </div>
