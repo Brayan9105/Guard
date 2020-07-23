@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root 'page#dashboard'
   
+  get 'securities', to: 'securities#index'
+  get 'healths', to: 'healths#index'
+  
   # Floors routes
   resources :floors
   get 'floor_offices/:id', to: 'offices#floor_offices'
