@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root 'page#dashboard'
+
+  resources :tokens, only: [:index, :show]
   
   get 'securities', to: 'securities#index'
   get 'healths', to: 'healths#index'

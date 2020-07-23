@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  
+  <div class="row mb-3">
+    <div class="col-10">
+      <h1>Fichas</h1>
+    </div>
+  </div>
+  
+  <div class="card">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th colspan="2">Opciones</th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          <% @tokens.each do |token| %>
+            <tr>
+              <td><%= link_to token.name, token %></td>
+              <td>
+                <% if token.enable? %>
+                  <span class="badge badge-success">Disponible</span>
+                  <% else %>
+                  <span class="badge badge-danger">Ocupado</span>
+                <% end %>
+              </td>
+              <td>
+                <% unless token.enable? %>
+                  <%= link_to 'Ver', token_path(token), class: 'btn btn-info' %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>  
+    </div>  
+  </div>
+
+</div>

@@ -1,0 +1,33 @@
+<div class="container-fluid">    
+  <%= link_to 'Regresar', tokens_path, class: 'btn btn-secondary mb-5' %>
+  
+  <div class="h1">
+    <%= @token.name.capitalize %>
+  </div>
+  
+  <div class="card">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>Oficina</th>
+            <th>Cedula</th>
+            <th>Nombre completo</th>
+            <th>Hora de ingreso</th>
+            <th>Tem. Ingreso</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+          <tr>
+            <td><%= @visit.office.name %></td>
+            <td><%= @visit.visitor.dni %></td>
+            <td><%= "#{@visit.visitor.first_name} #{@visit.visitor.last_name}" %></td>
+            <td></td>
+            <td><%= @visit.in_temperature %></td>
+            <td><%= link_to 'Ver visita', @visit, class: 'btn btn-info' %></td>
+          </tr>
+      </table>
+    </div>
+  </div>
+  
+</div>  
