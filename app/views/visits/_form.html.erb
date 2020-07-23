@@ -30,7 +30,7 @@
     <div class="col-4">
       <div class="form-group">
         <%= form.label :in_temperature %>
-        <%= form.number_field :in_temperature, class: 'form-control', placeholder: 'Digite la temperatura' %>
+        <%= form.number_field :in_temperature, :value => (number_with_precision(form.object.in_temperature, :precision => 2) || 0), step: 0.1,class: 'form-control', placeholder: 'Digite la temperatura' %>
       </div>
     </div>
   </div>

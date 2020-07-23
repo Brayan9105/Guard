@@ -41,14 +41,14 @@
       <div class="col-4">
         <div class="form-group">
           <%= form.label 'Temperatura de ingreso' %>
-          <input type="text" class="form-control" disabled="true" value= <%= "#{@visit.in_temperature}" %> >
+          <input type="number" class="form-control" disabled="true" value= <%= "#{@visit.in_temperature}" %> >
         </div>
       </div>
 
       <div class="col-4">
         <div class="form-group">
           <%= form.label :out_temperature %>
-          <%= form.number_field :out_temperature, class: 'form-control', placeholder: 'Digite la temperatura' %>
+          <%= form.number_field :out_temperature, step: 0.1 ,class: 'form-control', placeholder: 'Digite la temperatura' %>
         </div>
       </div>
   

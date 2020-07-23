@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_23_162559) do
+ActiveRecord::Schema.define(version: 2020_07_23_203336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,8 +126,8 @@ ActiveRecord::Schema.define(version: 2020_07_23_162559) do
   end
 
   create_table "visits", force: :cascade do |t|
-    t.integer "in_temperature"
-    t.integer "out_temperature"
+    t.decimal "in_temperature", precision: 3, scale: 1
+    t.decimal "out_temperature", precision: 3, scale: 1
     t.integer "status", default: 0
     t.bigint "visitor_id", null: false
     t.bigint "floor_id", null: false

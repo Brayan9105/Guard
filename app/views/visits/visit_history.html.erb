@@ -33,10 +33,10 @@
             <td><%= "#{visit.visitor.first_name} #{visit.visitor.last_name}" %></td>
             <td class="center-text"><%= visit.floor.name %></td>
             <td class="center-text"><%= visit.office.name %></td>
-            <td class="center-text"><%= visit.in_temperature %>°</td>
+            <td class="center-text"><%= number_with_precision(visit.in_temperature, precision: 1) %>°</td>
             <td class="center-text">
               <% if visit.out_temperature %>
-                <%= visit.out_temperature %>°
+                <%= number_with_precision(visit.out_temperature, precision: 1) %>°
               <% else %>
                 <div class="badge bg-info text-white">Sin tomar</div>  
               <% end %>
