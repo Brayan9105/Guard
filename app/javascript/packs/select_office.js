@@ -24,6 +24,8 @@ let btnSearch = document.getElementById('btnSearch')
 
 //visitor table data
 let tdId = document.getElementById('tdId')
+let tdPhotoText = document.getElementById('tdPhotoText')
+let tdPhoto = document.getElementById('tdPhoto')
 let tdDni = document.getElementById('tdDni')
 let tdFullname = document.getElementById('tdFullname')
 let tdOptions = document.getElementById('tdOptions')
@@ -42,6 +44,12 @@ btnSearch.addEventListener('click', () => {
       if(data.length != 0){
         data.forEach(visitor => {
           tdId.innerText = visitor.id
+          if(visitor.photo == ""){
+            tdPhotoText.innerText = "No tiene foto"
+          }else{
+            tdPhoto.src = visitor.photo
+          }
+
           tdDni.innerText = visitor.dni;
           tdFullname.innerText = `${visitor.first_name} ${visitor.last_name}`;
           tdOptions.appendChild(btn)

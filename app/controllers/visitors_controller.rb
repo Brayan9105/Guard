@@ -6,6 +6,12 @@ class VisitorsController < ApplicationController
   end
 
   def show
+    p '---------------------------------'
+    p @visitor
+    p '---------------------------------'
+    p 'FOTOOOOOO'
+    p @visitor.photo
+    p '---------------------------------'
   end
 
   def new

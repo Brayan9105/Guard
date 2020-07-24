@@ -12,9 +12,14 @@ class Visitor < ApplicationRecord
 
   def self.search(visitor_dni)
     visitor_dni = visitor_dni.strip
-    result = ActiveRecord::Base.connection.execute("select id, dni, first_name, last_name from visitors where dni = '#{visitor_dni}'").to_a
-    p '------------'
-    p result
+    visitor = where(dni: visitor_dni).first
+    result = []
+    if visitor
+      photoUrl = ""
+      photoUrl = Rails.application.routes.url_helpers.rails_blob_path(visitor.photo, only_path: true) if visitor.photo.attached?
+      result[0] = {id: visitor.id, dni: visitor.dni, first_name: visitor.first_name, last_name: visitor.first_name, photo: photoUrl}
+    end
+
     result
   end
 end
