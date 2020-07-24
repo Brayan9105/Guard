@@ -44,10 +44,14 @@ btnSearch.addEventListener('click', () => {
       if(data.length != 0){
         data.forEach(visitor => {
           tdId.innerText = visitor.id
+          console.log(visitor.photo)
           if(visitor.photo == ""){
             tdPhotoText.innerText = "No tiene foto"
           }else{
-            tdPhoto.src = visitor.photo
+            tdPhotoText.innerText = ""
+            let photo = document.createElement('img')
+            photo.src = visitor.photo
+            tdPhotoText.appendChild(photo)
           }
 
           tdDni.innerText = visitor.dni;
