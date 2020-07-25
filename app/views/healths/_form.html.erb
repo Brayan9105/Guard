@@ -1,7 +1,7 @@
 <%= form_with(model: @health, local: true) do |form| %>
   <% if @health.errors.any? %>
     <div id="error_explanation">
-      <h2>Los siguientes errores han evitado la creacion de la eps:</h2>
+      <h2>Los siguientes errores han evitado cumplir la tarea:</h2>
 
       <ul>
         <% @health.errors.full_messages.each do |message| %>
