@@ -20,7 +20,7 @@
 
         <div class="col-5">
           <label for="">Nombre completo</label>
-          <input type="text" disabled="true" value= <%= "#{@visitor.first_name} #{@visitor.last_name}" %> class="form-control"> 
+          <input type="text" disabled="true" value= '<%= "#{@visitor.first_name} #{@visitor.last_name}" %>' class="form-control"> 
         </div>
       </div>
 
@@ -48,12 +48,25 @@
               <th>Fecha</th>
               <th>Piso</th>
               <th>Oficina</th>
-              <th>Hora de ingreso</th>
-              <th>Hora de salida</th>
-              <th>Temperatura de entrada</th>
-              <th>Temperatura de salida</th>
+              <th class="center-text">H Ingreso</th>
+              <th class="center-text">H de Salida</th>
+              <th class="center-text">Temp de entrada</th>
+              <th class="center-text">Temp de salida</th>
+              <th class="center-text">Opciones</th>
             </thead>
           </tr>
+          <% @visitor.visits.out.each do |visit| %>
+            <tr>
+              <td><%= visit.created_at.strftime("%x") %></td>
+              <td><%= visit.floor.name %></td>
+              <td><%= visit.office.name %></td>
+              <td class="center-text"><%= visit.created_at.in_time_zone('America/Bogota').strftime("%R %P") %></td>
+              <td class="center-text"><%= visit.updated_at.in_time_zone('America/Bogota').strftime("%R %P") %></td>
+              <td class="center-text"><%= number_with_precision(visit.in_temperature, precision: 1) %>°</td>
+              <td class="center-text"><%= number_with_precision(visit.out_temperature, precision: 1) %>°</td>
+              <td class="center-text"><%= link_to 'Ver', visit_path(visit), class: 'btn btn-info' %></td>
+            </tr>
+          <% end %>
         </table>
       </div>
     </div>
