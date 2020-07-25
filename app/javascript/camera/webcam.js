@@ -1,6 +1,6 @@
 document.addEventListener("turbolinks:load", function () {
   if (document.getElementById('snap')) {
-    // var cameraClick = new Audio("/camera_click.mp3")
+    var cameraClick = new Audio("/camera_click.mp3")
     var changePictureButton = document.getElementById('change_picture')
 
     if (document.getElementById('snap') && document.getElementById('viewfinder')) {
@@ -41,7 +41,7 @@ document.addEventListener("turbolinks:load", function () {
 
       if (snapButton) {
         snapButton.onclick = function () {
-          // cameraClick.play()
+          cameraClick.play()
 
           canvas.width = video.width
           canvas.height = video.height
