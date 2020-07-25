@@ -51,12 +51,16 @@ btnSearch.addEventListener('click', () => {
             tdPhotoText.innerText = ""
             let photo = document.createElement('img')
             photo.src = visitor.photo
+            photo.style.width = "10rem"
             tdPhotoText.appendChild(photo)
           }
 
           tdDni.innerText = visitor.dni;
+          tdDni.style.verticalAlign = "middle"
           tdFullname.innerText = `${visitor.first_name} ${visitor.last_name}`;
+          tdFullname.style.verticalAlign = "middle"
           tdOptions.appendChild(btn)
+          tdOptions.style.verticalAlign = "middle"
         })
       }else{
         tdDni.innerText = "No esta registrado";
