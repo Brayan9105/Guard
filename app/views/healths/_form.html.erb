@@ -1,0 +1,32 @@
+<%= form_with(model: @health, local: true) do |form| %>
+  <% if @health.errors.any? %>
+    <div id="error_explanation">
+      <h2>Los siguientes errores han evitado la creacion de la eps:</h2>
+
+      <ul>
+        <% @health.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control', placeholder: 'Nombre de la eps' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :address %>
+    <%= form.text_area :address, class: 'form-control', placeholder: 'Digite la direccion' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :phone %>
+    <%= form.text_area :phone, class: 'form-control', placeholder: 'Digite el telefono' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit class: 'btn btn-success' %>
+  </div>
+<% end %>

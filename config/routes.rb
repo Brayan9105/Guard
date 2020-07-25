@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   resources :tokens, only: [:index, :show]
   
-  get 'securities', to: 'securities#index'
-  get 'healths', to: 'healths#index'
+  resources :securities, except: [:destroy]
+  resources :healths, except: [:destroy]
   
   # Floors routes
   resources :floors
