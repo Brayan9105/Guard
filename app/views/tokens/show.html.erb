@@ -11,14 +11,6 @@
       Estado: <span class="badge badge-success">Disponible</span>
     <% end %>
   </p>
-  
-  <div class="card mb-3" style="width: 18rem;">
-    <% if @visit.visitor.photo.attached? %>
-      <%= image_tag(@visit.visitor.photo, class: "card-img-top") %>
-    <% else %>
-      <img class="card-img-top" src="/cat.jpg" id="shot" style="width: 18rem;">
-    <% end %>
-  </div>
 
   <p class="lead">
     <% if @token.disable? %>
@@ -27,30 +19,49 @@
       Ultimo visitante en usar la ficha
     <% end %>
   </p>
-
-  <div class="card">
-    <div class="table-responsive">
-      <table class="table">
-        <thead class="thead-light">
-          <tr>
-            <th>Oficina</th>
-            <th>Cedula</th>
-            <th>Nombre completo</th>
-            <th class="center-text">Hora de ingreso</th>
-            <th class="center-text">Tem. Ingreso</th>
-            <th class="center-text">Opciones</th>
-          </tr>
-        </thead>
-          <tr>
-            <td><%= @visit.office.name %></td>
-            <td><%= @visit.visitor.dni %></td>
-            <td><%= "#{@visit.visitor.first_name} #{@visit.visitor.last_name}" %></td>
-            <td class="center-text"><%= @visit.created_at.in_time_zone('America/Bogota').strftime("%r") %></td>
-            <td class="center-text"><%= @visit.in_temperature %>°</td>
-            <td class="center-text"><%= link_to 'Ver visita', @visit, class: 'btn btn-info' %></td>
-          </tr>
-      </table>
-    </div>
-  </div>
   
+  <div class="card">
+    <div class="row">
+      <div class="col-4">
+        <div class="card" style="width: 18rem;">
+          <% if @visit.visitor.photo.attached? %>
+            <%= image_tag(@visit.visitor.photo, class: "card-img-top") %>
+          <% else %>
+            <img class="card-img-top" src="/cat.jpg" id="shot" style="width: 18rem;">
+          <% end %>
+        </div>
+      </div>
+      <div class="col">
+        <div class="row pt-5">
+          <div class="col-4">
+            <div class="h5">Nombre:</div>
+            <p class="lead"><%= "#{@visit.visitor.first_name} #{@visit.visitor.last_name}" %></p>
+          </div>
+          <div class="col-4">
+            <div class="h5">Cedula:</div>
+            <p class="lead"><%= @visit.visitor.dni %></p>
+          </div>
+          <div class="col-4">
+            <div class="h5">Hora de ingreso:</div>
+            <p class="lead"><%= @visit.created_at.in_time_zone('America/Bogota').strftime("%r") %></p>
+          </div>
+        </div>
+        <div class="row pt-3">
+          <div class="col-4">
+            <div class="h5">Piso:</div>
+            <p class="lead"><%= @visit.floor.name %></p>
+          </div>
+          <div class="col-4">
+            <div class="h5">Oficina:</div>
+            <p class="lead"><%= @visit.office.name %></p>
+          </div>
+          <div class="col-4">
+            <div class="h5">Tem. Ingreso:</div>
+            <p class="lead"><%= @visit.in_temperature %>°</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>  
