@@ -17,10 +17,14 @@ es:
       office:
         name: 'Nombre'
         floor_id: 'Piso'
-      healt:
+      health:
         name: 'Nombre'
+        address: 'Direccion'
+        phone: 'Telefono'
       security:
         name: 'Nombre'
+        address: 'Direccion'
+        phone: 'Telefono'
       visitor:
         dni: 'Cedula'
         first_name: 'Nombre'
