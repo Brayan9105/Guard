@@ -4,7 +4,7 @@ es:
     models:
       floor: 'Piso'
       office: 'Oficina'
-      Token: 'Ficha'
+      token: 'Ficha'
       health: 'Eps'
       security: 'Arl'
       visitor: 'Visitante'
@@ -17,6 +17,7 @@ es:
       office:
         name: 'Nombre'
         floor_id: 'Piso'
+        floor: 'Piso'
       health:
         name: 'Nombre'
         address: 'Direccion'
@@ -25,6 +26,9 @@ es:
         name: 'Nombre'
         address: 'Direccion'
         phone: 'Telefono'
+      token:
+        name: 'Nombre'
+        status: 'Estado'
       visitor:
         dni: 'Cedula'
         first_name: 'Nombre'
@@ -33,16 +37,19 @@ es:
         health: 'Eps'
         security: 'Arl'
         security_id: 'Arl'
+        status: 'Estado'
       visit:
         floor: 'Piso'
         floor_id: 'Piso'
         office_id: 'Oficina'
         office: 'Oficina'
         token_id: 'Ficha'
+        token: 'Ficha'
         visitor_id: 'Visitante'
         visitor: 'Visitante'
         in_temperature: 'Temperature de ingreso'
         out_temperature: 'Temperature de salida'
+        status: 'Estado'
         
     errors:
       messages:
