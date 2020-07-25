@@ -23,7 +23,7 @@ class VisitorsController < ApplicationController
       flash[:success] = 'Se ha creado exitosamente el visitante.' 
       redirect_to @visitor
     else
-      flash.now[:danger] = "No se ha podido crear el visitante. #{@visitor.errors.full_messages.to_sentence}"
+      flash.now[:danger] = "No se ha podido crear el visitante."
       render :new
     end
   end
@@ -35,7 +35,7 @@ class VisitorsController < ApplicationController
       flash[:success] = 'Se ha actualizado exitosamente el visitante.'
       redirect_to @visitor
     else
-      flash.now[:danger] = "No se ha podido actualizar el visitante\n #{@visitor.errors.full_messages.to_sentence}"
+      flash.now[:danger] = "No se ha podido actualizar el visitante."
       render :edit
     end
   end

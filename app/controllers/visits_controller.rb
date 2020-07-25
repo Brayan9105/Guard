@@ -21,31 +21,27 @@ class VisitsController < ApplicationController
 
   def create
     @visit = Visit.new(visit_params)
-    respond_to do |format|
-      if @visit.save
-        token = Token.find(params[:visit][:token_id])
-        token.disable!
-        format.html { redirect_to active_visit_path, notice: 'Visit was successfully created.' }
-        format.json { render :show, status: :created, location: @visit }
-      else
-        format.html { render :new }
-        format.json { render json: @visit.errors, status: :unprocessable_entity }
-      end
+    if @visit.save
+      token = Token.find(params[:visit][:token_id])
+      token.disable!
+      flash[:success] = 'Se ha registrado exitosamente la visita.'
+      redirect_to active_visit_path
+    else
+      flash.now[:danger] = 'No se ha podido registrar la visita.'
+      render :new 
     end
   end
 
   def update
-    respond_to do |format|
-      if @visit.update(visit_params)
-        token = Token.find(params[:visit][:token_id])
-        token.enable!
-        @visit.out!
-        format.html { redirect_to active_visit_path, notice: 'Visit was successfully updated.' }
-        format.json { render :show, status: :ok, location: @visit }
-      else
-        format.html { render :edit }
-        format.json { render json: @visit.errors, status: :unprocessable_entity }
-      end
+    if @visit.update(visit_params)
+      token = Token.find(params[:visit][:token_id])
+      token.enable!
+      @visit.out!
+      flash[:success] = 'Se ha dado salida al visitante de manera exitosa.'
+      redirect_to active_visit_path
+    else
+      flash.now[:danger] = 'No se ha podido dar salida al visitante.'
+      render :edit
     end
   end
 
