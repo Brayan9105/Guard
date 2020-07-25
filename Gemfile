@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 #Added gems
 gem 'devise', '~> 4.7', '>= 4.7.2'
 gem 'activeadmin', '~> 2.7'
+gem 'active_material', '~> 1.4', '>= 1.4.2'
 gem 'chartkick', '~> 3.3', '>= 3.3.1'
 gem 'groupdate', '~> 5.0'
 
