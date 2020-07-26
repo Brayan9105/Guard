@@ -10,6 +10,8 @@ es:
       already_authenticated: "Ya estas conectado"
       invalid: "El correo y/o la contraseña son incorrectos."
       unauthenticated: "Necesitas ingresar a tu cuenta para ver el contenido."
+      admin_user:
+        not_found_in_database: 'No existe este usuario'
     sessions:
       link: 'Ingresar'
       signed_in: 'Has ingresado correctamente.'

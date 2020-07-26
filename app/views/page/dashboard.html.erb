@@ -1,21 +1,25 @@
 <div class="container-fluid">
   <h1>Tablero</h1>
-  <%= line_chart Visit.group_by_day(:created_at, last: 7).count,
-    colors: ['orange'],
-    prefix: 'Visitas: ',
-    suffix: ' ...'
-        
-  %>
+  <div class="card shadow p-3 mb-5 bg-white rounded">
+    <%= line_chart Visit.group_by_day(:created_at, last: 7).count,
+      colors: ['orange'],
+      prefix: 'Visitas: ',
+      suffix: ' ...'
+          
+    %>
+  </div>
 
   <hr class="my-5">
 
-  <%= pie_chart Visit.group(:office_id).count, 
-        title: 'Los 3 pisos mas visitados',
-        library: {
-          legend: {
-            labelFormat: '{name} : {y} ({percentage}%)'
+  <div class="card shadow p-3 mb-5 bg-white rounded">
+    <%= pie_chart Visit.group(:office_id).count, 
+          title: 'Los 3 pisos mas visitados',
+          library: {
+            legend: {
+              labelFormat: '{name} : {y} ({percentage}%)'
+            }
           }
-        }
-
-  %>
+  
+    %>
+  </div>
 </div>

@@ -1,25 +1,26 @@
 <div class="container-fluid">
   <%= link_to 'Regresar', offices_path, class: 'btn btn-secondary mb-5' %>
-  <h1 class="mb-3">Nueva oficina</h1>
-
-  <div class="row">
-    <div class="col-6">
-      <%= render 'form', office: @office %>
-    </div>
-    <div class="col-5">
-      <h3>Oficinas existentes</h3>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-          </tr>
-        </thead>
-        <% Office.all.each do |office| %>
-          <tr>
-            <td><%= office.name.capitalize %></td>
-          </tr>
-        <% end %>
-      </table>
+  <div class="card shadow p-3 mb-5 bg-white rounded">
+    <h1 class="mb-3">Nueva oficina</h1>
+    <div class="row">
+      <div class="col-6">
+        <%= render 'form', office: @office %>
+      </div>
+      <div class="col-5">
+        <h3>Oficinas existentes</h3>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+            </tr>
+          </thead>
+          <% Office.all.each do |office| %>
+            <tr>
+              <td><%= office.name.capitalize %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
     </div>
   </div>
 </div>

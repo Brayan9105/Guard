@@ -15,8 +15,8 @@
           <table class="table">
             <thead class="thead-light">
               <tr>
-                <th class="center-text">Oficinas</th>
-                <th class="center-text">Visitantes</th>
+                <th class="center-text"><%= link_to 'Oficinas', offices_path %></th>
+                <th class="center-text"><%= link_to 'Visitantes', active_visit_path %></th>
               </tr>
               <tr>
             </thead>
@@ -30,10 +30,16 @@
   </div>
 
   <hr class="my-5">
-  <div class="h2">
-    Oficinas
-  </div>
-  <div class="card">
+  <div class="card shadow p-3 mb-0 bg-white rounded">
+    <div class="row mb-0">
+      <div class="col-10">
+        <h2><%= link_to 'Oficinas', offices_path %></h2>
+      </div>
+      <div class="col-2">
+        <%= link_to 'Agregar oficina', new_office_path, class: 'btn btn-success' %>
+      </div>
+    </div>
+    <hr>
     <div class="table-responsive">
       <table class="table">
         <thead class="thead-light">
