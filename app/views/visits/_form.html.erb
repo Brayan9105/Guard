@@ -1,6 +1,6 @@
 <%= form_with(model: visit, local: true) do |form| %>
-  <div class="lert alert-danger py-3 px-3 my-3">
-    <% if visit.errors.any? %>
+  <% if visit.errors.any? %>
+    <div class="lert alert-danger py-3 px-3 my-3">
       <div id="error_explanation">
         <h2>Los siguientes errores han evitado cumplir la tarea</h2>
   
@@ -10,8 +10,8 @@
           <% end %>
         </ul>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 
   <div class="row">
     <div class="col-4">

@@ -1,5 +1,6 @@
 <%= form_with(model: floor, local: true) do |form| %>
   <% if floor.errors.any? %>
+  <div class="lert alert-danger py-3 px-3 my-3">
     <div id="error_explanation">
       <h2>Los siguientes errores han evitado cumplir la tarea:</h2>
 
@@ -9,6 +10,7 @@
         <% end %>
       </ul>
     </div>
+  </div>
   <% end %>
 
   
