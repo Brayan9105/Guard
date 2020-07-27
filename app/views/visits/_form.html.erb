@@ -1,15 +1,17 @@
 <%= form_with(model: visit, local: true) do |form| %>
-  <% if visit.errors.any? %>
-    <div id="error_explanation">
-      <h2>Los siguientes errores han evitado cumplir la tarea</h2>
-
-      <ul>
-        <% visit.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class="lert alert-danger py-3 px-3 my-3">
+    <% if visit.errors.any? %>
+      <div id="error_explanation">
+        <h2>Los siguientes errores han evitado cumplir la tarea</h2>
+  
+        <ul>
+          <% visit.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
 
   <div class="row">
     <div class="col-4">

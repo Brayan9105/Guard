@@ -17,66 +17,54 @@
         <%= form.label :dni %>
         <%= form.number_field :dni, class: 'form-control', placeholder: 'Digita numero cedula' %>
       </div>
-    </div>
 
-    <div class="col-4">
       <div class="form-group">
         <%= form.label :first_name %>
         <%= form.text_field :first_name, class: 'form-control', placeholder: 'Digitar nombre' %>
       </div>
-    </div>
 
-    <div class="col-4">
       <div class="form-group">
         <%= form.label :last_name %>
         <%= form.text_field :last_name, class: 'form-control', placeholder: 'Digitar tu apellido' %>
       </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-4">
       <div class="form-group">
         <%= form.label :health_id %>
         <%= form.collection_select :health_id, Health.all(), :id, :name, { :prompt => 'Seleccione la eps' }, {class: 'form-control'} %> 
       </div>
-    </div>
 
-    <div class="col-4">
       <div class="form-group">
         <%= form.label :security_id %>
         <%= form.collection_select :security_id, Security.all(), :id, :name, { :prompt => 'Seleccione la arl' }, {class: 'form-control'} %> 
       </div>
+
+      <div class="form-group">
+        <%= form.submit class:'btn btn-success' %>
+      </div>
     </div>
-  </div>
 
-
-  
-  <div class="ml-4 mb-4">
-    <div class="row">
+    <div class="col-3">
       <div class="card" style="width: 18rem;">
         <% if @visitor.photo.attached? %>
           <%= image_tag(@visitor.photo, class: "card-img-top", id: "shot") %>
         <% else %>
-        <img class="card-img-top" src="/user-photo.png" id="shot" style="width: 18rem;">
+          <img class="card-img-top" src="/user-photo.png" id="shot" style="width: 18rem;">
         <% end %>
       </div>
-      
+
+      <div class="mt-2">
+        <button type="button" class="btn btn-info btn-sm" id="change_picture">Tomar foto</button>
+        <button type="button" class="btn btn-info btn-sm" id="snap">Capturar</button>
+      </div>
+    </div>
+
+    <div class="col-4">
       <div class="card ml-2" style="width: 18rem;" id="viewfinder">
         <video width="288" height="301" autoplay class=""></video>
       </div>
     </div>
-    
-    <div class="mt-2">
-      <button type="button" class="btn btn-info btn-sm" id="change_picture">Tomar foto</button>
-      <button type="button" class="btn btn-info btn-sm" id="snap">Capturar</button>
-    </div>
   </div>
   
-  
-  <div class="actions">
-    <%= form.submit class:'btn btn-success' %>
-  </div>
 
     <%= form.hidden_field :photo, value: @visitor.photo %>
   <% end %>

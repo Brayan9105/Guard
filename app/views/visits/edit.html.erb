@@ -4,7 +4,6 @@
     <% if @visit.errors.any? %>
       <div id="error_explanation">
         <h2>Los siguientes errores han evitado cumplir la tarea</h2>
-  
         <ul>
           <% @visit.errors.full_messages.each do |message| %>
             <li><%= message %></li>
@@ -13,51 +12,65 @@
       </div>
     <% end %>
   
-    <div class="row">
-      <div class="col-4">
-        <div class="form-group">
-          <%= form.label :token_id, 'Ficha' %>
-          <%= form.number_field :token_id, class: 'form-control' , readonly: true%>
-        </div>
-      </div>
-  
-      <div class="col-4">
-        <div class="form-group">
-          <%= form.label 'Cedula' %>
-          <input type="number" class="form-control" disabled="true" value= <%= @visit.visitor.dni%> >
-          <%= form.hidden_field :visitor_id %>
-        </div>
-      </div>
-    </div>
-  
-    <div class="row">
-      <div class="col-4">
-        <div class="form-group">
-          <%= form.label :full_name, 'Nombre completo' %>
-          <input type="text" class="form-control" disabled="true" value= <%= "#{@visit.visitor.first_name} #{@visit.visitor.last_name}" %> >
-        </div>
-      </div>
-      
-      <div class="col-4">
-        <div class="form-group">
-          <%= form.label 'Temperatura de ingreso' %>
-          <input type="number" class="form-control" disabled="true" value= <%= "#{@visit.in_temperature}" %> >
-        </div>
-      </div>
+    <div class="card shadow p-3 mb-5 bg-white rounded">
+      <h1 class="mb-3">Salida de la visita</h1>
+      <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <%= form.label :token_id, 'Ficha' %>
+            <%= form.number_field :token_id, class: 'form-control' , readonly: true %>
+          </div>
 
-      <div class="col-4">
-        <div class="form-group">
-          <%= form.label :out_temperature %>
-          <%= form.number_field :out_temperature, step: 0.1 ,class: 'form-control', placeholder: 'Digite la temperatura' %>
+          <div class="form-group">
+            <%= form.label :full_name, 'Nombre completo' %>
+            <input type="text" class="form-control" disabled="true" value= <%= "#{@visit.visitor.first_name} #{@visit.visitor.last_name}" %> >
+          </div>
+
+          <div class="form-group">
+            <%= form.label :floor %>
+            <input type="text" class="form-control" disabled="true" value= '<%= @visit.floor.name %>'' >
+          </div>
+
+          <div class="form-group">
+            <%= form.label :out_temperature %>
+            <%= form.number_field :out_temperature, step: 0.1 ,class: 'form-control', placeholder: 'Digite la temperatura' %>
+          </div>
+
+          <div class="form-group">
+            <%= form.submit 'Confirmar salida', class: 'btn btn-success' %>
+          </div>
+        </div>
+    
+        <div class="col-4">
+          <div class="form-group">
+            <%= form.label 'Cedula' %>
+            <input type="number" class="form-control" disabled="true" value= <%= @visit.visitor.dni %> >
+            <%= form.hidden_field :visitor_id %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label 'Oficina' %>
+            <input type="text" class="form-control" disabled="true" value= <%= "#{@visit.office.name}" %> >
+          </div>
+
+          <div class="form-group">
+            <%= form.label 'Temperatura de ingreso' %>
+            <input type="number" class="form-control" disabled="true" value= <%= "#{@visit.in_temperature}" %> >
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="form-group">
+            <div class="card" style="width: 18rem;">
+              <% if @visit.visitor.photo.attached? %>
+                <%= image_tag(@visit.visitor.photo, class: "card-img-top") %>
+              <% else %>
+                <img class="card-img-top" src="/user-photo.png" id="shot" style="width: 18rem;">
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
-  
     </div>
-    
-    <div class="form-group">
-      <%= form.submit 'Confirmar salida', class: 'btn btn-success' %>
-    </div>
-  
-  
   <% end %>
 </div>

@@ -1,21 +1,23 @@
-<div class="container-fluid">  
-  <h1 class="mb-3">Registrar visita</h1>
-
+<div class="container-fluid"> 
+  <%= link_to 'Regresar', active_visit_path, class: 'btn btn-secondary mb-5' %>
+  
   <div class="card shadow p-3 mb-5 bg-white rounded">
-    <div class="form-group">
-      <label for="">Buscar visitante</label>
-      <div class="row">
-        <div class="col-6">
-          <input type="number" id="searchDni" placeholder="Digite la cedula del visitante" class="form-control">
-        </div>
-        <div class="col-5">
-          <button id="btnSearch" class="btn btn-info">Buscar</button>
-          <%= link_to 'Agregar visitante', new_visitor_path, class: 'btn btn-success' %>
+    <h1 class="mb-5">Registrar visita</h1>
+
+    <div class="card mb-4 px-3 py-3">
+      <div class="form-group">
+        <h3>Buscar visitante</h3>
+        <div class="row">
+          <div class="col-6">
+            <input type="number" id="searchDni" placeholder="Digite la cedula del visitante" class="form-control">
+          </div>
+          <div class="col-5">
+            <button id="btnSearch" class="btn btn-info">Buscar</button>
+            <%= link_to 'Agregar visitante', new_visitor_path, class: 'btn btn-success' %>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="card">
       <div class="table-responsive">
         <table class="table">
           <thead class="thead-light">
@@ -37,13 +39,13 @@
         </table>
       </div>
     </div>
-  </div>
-  
-  <hr class="my-5">
 
-  <div class="card shadow p-3 mb-5 bg-white rounded">
-    <%= render 'form', visit: @visit %>
+    <div class="card px-3 py-3">
+      <h3>Datos de la visita</h3>
+      <%= render 'form', visit: @visit %>
+    </div>
   </div>
+
 </div>
 
 <%= javascript_pack_tag 'select_office' %>

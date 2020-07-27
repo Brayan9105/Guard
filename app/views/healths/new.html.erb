@@ -1,11 +1,12 @@
 <div class="container-fluid">
   <%= link_to 'Regresar', healths_path, class: 'btn btn-secondary mb-5' %>
   
-  <h1 class="mb-3">Nueva eps</h1>
-  
   <div class="row">
     <div class="col-6">
-      <%= render 'healths/form' %>
+      <div class="card shadow p-3 mb-5 bg-white rounded">
+        <h1 class="mb-3">Nueva eps</h1>
+        <%= render 'healths/form' %>
+      </div>
     </div>
   </div>
 

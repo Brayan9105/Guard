@@ -1,12 +1,11 @@
 <div class="container-fluid">
   <%= link_to 'Regresar', floors_path, class: 'btn btn-secondary mb-5' %>
-  <div class="card shadow p-3 mb-5 bg-white rounded">
-    <h1 class="mb-3">Editar piso</h1>
-    <div class="row">
-      <div class="col-6">
+  <div class="row">
+    <div class="col-6">
+      <div class="card shadow p-3 mb-5 bg-white rounded">
+        <h1 class="mb-3">Editar piso</h1>
         <%= render 'form', floor: @floor %>
       </div>
     </div>
   </div>
-  
 </div>

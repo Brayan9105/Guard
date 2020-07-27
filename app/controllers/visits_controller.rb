@@ -28,7 +28,7 @@ class VisitsController < ApplicationController
       redirect_to active_visit_path
     else
       flash.now[:danger] = 'No se ha podido registrar la visita.'
-      render :new 
+      render :new
     end
   end
 

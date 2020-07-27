@@ -1,17 +1,18 @@
 <div class="container-fluid">
-  <div class="row mb-3">
-    <div class="col-9">
-      <h1>Visitantes</h1>
-    </div>
-    <div class="col-3">
-      <%= link_to 'Agregar visitante', new_visitor_path, class: 'btn btn-success' %>
-    </div>
-  </div>
   
-<div class="card shadow p-3 mb-5 bg-white rounded">
+  <div class="card shadow p-3 mb-5 bg-white rounded">
+    <div class="row mb-0">
+      <div class="col-9">
+        <h1>Visitantes</h1>
+      </div>
+      <div class="col-3">
+        <%= link_to 'Agregar visitante', new_visitor_path, class: 'btn btn-success' %>
+      </div>
+    </div>
+    <hr>
   <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
+    <table class="table">
+      <thead class="thead-light">
         <tr>
           <th>Cedula</th>
           <th>Nombre</th>

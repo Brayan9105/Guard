@@ -1,15 +1,18 @@
 <div class="container-fluid">
   <%= link_to 'Regresar', offices_path, class: 'btn btn-secondary mb-5' %>
-  <div class="card shadow p-3 mb-5 bg-white rounded">
-    <h1 class="mb-3">Nueva oficina</h1>
-    <div class="row">
-      <div class="col-6">
-        <%= render 'form', office: @office %>
+  <div class="row">
+    <div class="col-6">
+      <div class="card shadow p-3 mb-5 bg-white rounded">
+        <h1 class="mb-3">Nueva oficina</h1>
+            <%= render 'form', office: @office %>
+          </div>
       </div>
-      <div class="col-5">
+
+    <div class="col-5">
+      <div class="card shadow p-3 mb-5 bg-white rounded">
         <h3>Oficinas existentes</h3>
-        <table class="table table-striped">
-          <thead>
+        <table class="table">
+          <thead class="thead-light">
             <tr>
               <th>Nombre</th>
             </tr>

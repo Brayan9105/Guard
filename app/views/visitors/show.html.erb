@@ -1,73 +1,81 @@
 <div class="container-fluid">
   <%= link_to 'Regresar', visitors_path, class: 'btn btn-secondary mb-5' %>
-  <div class="row">
-    <div class="col-4">
-      <div class="card" style="width: 18rem;">
-        <% if @visitor.photo.attached? %>
-          <%= image_tag(@visitor.photo, class: "card-img-top", id: "shot") %>
-        <% else %>
-          <img class="card-img-top" src="/user-photo.png" id="shot" style="width: 18rem;">
-        <% end %>
-      </div>
-    </div>
-
-    <div class="col-8">
-      <div class="row pt-5">
-        <div class="col-5">
-          <label for="">Cedula</label>
-          <input type="text" disabled="true" value= <%= @visitor.dni %> class="form-control"> 
-        </div>
-
-        <div class="col-5">
-          <label for="">Nombre completo</label>
-          <input type="text" disabled="true" value= '<%= "#{@visitor.first_name} #{@visitor.last_name}" %>' class="form-control"> 
+  <div class="card shadow p-3 mb-5 bg-white rounded">
+    <h2>Datos del visitante</h2>
+    <hr>
+    <div class="row">
+      <div class="col-4">
+        <div class="card" style="width: 18rem;">
+          <% if @visitor.photo.attached? %>
+            <%= image_tag(@visitor.photo, class: "card-img-top", id: "shot") %>
+          <% else %>
+            <img class="card-img-top" src="/user-photo.png" id="shot" style="width: 18rem;">
+          <% end %>
         </div>
       </div>
-
-      <div class="row pt-5">
-        <div class="col-5">
-          <label for="">Eps</label>
-          <input type="text" disabled="true" value= <%= @visitor.health.name %> class="form-control"> 
+  
+      <div class="col-8">
+        <div class="row pt-5">
+          <div class="col-5">
+            <label for="">Cedula</label>
+            <input type="text" disabled="true" value= <%= @visitor.dni %> class="form-control"> 
+          </div>
+  
+          <div class="col-5">
+            <label for="">Nombre completo</label>
+            <input type="text" disabled="true" value= '<%= "#{@visitor.first_name} #{@visitor.last_name}" %>' class="form-control"> 
+          </div>
         </div>
-
-        <div class="col-5">
-          <label for="">Arl</label>
-          <input type="text" disabled="true" value= <%= @visitor.security.name %> class="form-control"> 
+  
+        <div class="row pt-5">
+          <div class="col-5">
+            <label for="">Eps</label>
+            <input type="text" disabled="true" value= <%= @visitor.health.name %> class="form-control"> 
+          </div>
+  
+          <div class="col-5">
+            <label for="">Arl</label>
+            <input type="text" disabled="true" value= <%= @visitor.security.name %> class="form-control"> 
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row mt-5 mb-5">
-    <div class="col">
-      <h2>Historial de visitas</h2>
-      <div class="table-responsive">
-        <table class="table table-striped">
-          <tr>
-            <thead>
-              <th>Fecha</th>
-              <th>Piso</th>
-              <th>Oficina</th>
-              <th class="center-text">H Ingreso</th>
-              <th class="center-text">H de Salida</th>
-              <th class="center-text">Temp de entrada</th>
-              <th class="center-text">Temp de salida</th>
-              <th class="center-text">Opciones</th>
-            </thead>
-          </tr>
-          <% @visitor.visits.out.each do |visit| %>
+  <hr class="my-5">
+
+  <div class="card shadow p-3 mb-5 bg-white rounded">
+    <div class="row mt-1 mb-5">
+      <div class="col">
+        <h2>Historial de visitas</h2>
+        <div class="table-responsive">
+          <table class="table">
             <tr>
-              <td><%= visit.created_at.strftime("%x") %></td>
-              <td><%= visit.floor.name %></td>
-              <td><%= visit.office.name %></td>
-              <td class="center-text"><%= visit.created_at.in_time_zone('America/Bogota').strftime("%R %P") %></td>
-              <td class="center-text"><%= visit.updated_at.in_time_zone('America/Bogota').strftime("%R %P") %></td>
-              <td class="center-text"><%= number_with_precision(visit.in_temperature, precision: 1) %>°</td>
-              <td class="center-text"><%= number_with_precision(visit.out_temperature, precision: 1) %>°</td>
-              <td class="center-text"><%= link_to 'Ver', visit_path(visit), class: 'btn btn-info' %></td>
+              <thead class="thead-light">
+                <th>Fecha</th>
+                <th>Piso</th>
+                <th>Oficina</th>
+                <th class="center-text">H Ingreso</th>
+                <th class="center-text">H de Salida</th>
+                <th class="center-text">Temp de entrada</th>
+                <th class="center-text">Temp de salida</th>
+                <th class="center-text">Opciones</th>
+              </thead>
             </tr>
-          <% end %>
-        </table>
+            <% @visitor.visits.out.each do |visit| %>
+              <tr>
+                <td><%= visit.created_at.strftime("%x") %></td>
+                <td><%= link_to visit.floor.name, floor_path(visit.floor) %></td>
+                <td><%= link_to visit.office.name, office_path(visit.office) %></td>
+                <td class="center-text"><%= visit.created_at.in_time_zone('America/Bogota').strftime("%R %P") %></td>
+                <td class="center-text"><%= visit.updated_at.in_time_zone('America/Bogota').strftime("%R %P") %></td>
+                <td class="center-text"><%= number_with_precision(visit.in_temperature, precision: 1) %>°</td>
+                <td class="center-text"><%= number_with_precision(visit.out_temperature, precision: 1) %>°</td>
+                <td class="center-text"><%= link_to 'Ver', visit_path(visit), class: 'btn btn-info' %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
       </div>
     </div>
   </div>

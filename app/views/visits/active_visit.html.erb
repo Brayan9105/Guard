@@ -1,14 +1,15 @@
 <div class="container-fluid">
-  <div class="row mb-3">
-    <div class="col-10">
-      <h1>Visitas activas</h1>
-    </div>
-    <div class="col-2">
-      <%= link_to 'Agregar visita', new_visit_path, class: 'btn btn-success' %>
-    </div>
-  </div>
-
+  
   <div class="card shadow p-3 mb-5 bg-white rounded">
+    <div class="row mb-0">
+      <div class="col-10">
+        <h1>Visitas activas</h1>
+      </div>
+      <div class="col-2">
+        <%= link_to 'Agregar visita', new_visit_path, class: 'btn btn-success' %>
+      </div>
+    </div>
+    <hr>
     <div class="table-responsive">
       <table class="table">
         <thead class="thead-light">
@@ -25,11 +26,11 @@
         </thead>
         <% @visits.in.each do |visit| %>
           <tr>
-            <td><%= visit.visitor.dni %></td>
-            <td><%= "#{visit.visitor.first_name} #{visit.visitor.last_name}" %></td>
-            <td class="center-text"><%= visit.floor.name %></td>
-            <td class="center-text"><%= visit.office.name %></td>
-            <td class="center-text"><%= visit.token.name %></td>
+            <td><%= link_to visit.visitor.dni, visitor_path(visit.visitor) %></td>
+            <td><%= link_to "#{visit.visitor.first_name} #{visit.visitor.last_name}", visitor_path(visit.visitor) %></td>
+            <td class="center-text"><%= link_to visit.floor.name, floor_path(visit.floor) %></td>
+            <td class="center-text"><%= link_to visit.office.name, office_path(visit.office) %></td>
+            <td class="center-text"><%= link_to visit.token.name, token_path(visit.token) %></td>
             <td class="center-text"><%= number_with_precision(visit.in_temperature, precision: 1) %>°</td>
             <td class="center-text"><%= visit.created_at.in_time_zone('America/Bogota').strftime("%r") %></td>
             <td class="center-text">
