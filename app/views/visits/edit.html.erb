@@ -57,6 +57,12 @@
             <%= form.label 'Temperatura de ingreso' %>
             <input type="number" class="form-control" disabled="true" value= <%= "#{@visit.in_temperature}" %> >
           </div>
+
+          <div class="form-group">
+            <%= form.label 'Observaciones' %>
+            <textarea rows="2" form="usrform" disabled="true" class="form-control"><%= @visit.observation %></textarea>
+            
+          </div>
         </div>
 
         <div class="col-4">

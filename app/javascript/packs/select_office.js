@@ -86,11 +86,13 @@ btnSearch.addEventListener('click', () => {
 let idField = document.getElementById('visit_visitor_id')
 let dniField = document.getElementById('visit_visitor_dni')
 let fullnameField = document.getElementById('visit_full_name')
+let companyField = document.getElementById('visit_company')
 
 btn.addEventListener('click', () => {
   idField.value = tdId.innerText;
   dniField.value = tdDni.innerText;
   fullnameField.value = tdFullname.innerText;
+  companyField.value = tdCompany.innerText;
 })
 
 

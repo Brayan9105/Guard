@@ -68,6 +68,6 @@ class VisitsController < ApplicationController
     end
 
     def visit_params
-      params.require(:visit).permit(:visitor_id, :floor_id, :office_id, :token_id, :in_temperature, :out_temperature)
+      params.require(:visit).permit(:visitor_id, :floor_id, :office_id, :token_id, :in_temperature, :out_temperature, :observation)
     end
 end

@@ -1,13 +1,17 @@
 <div class="container-fluid">
   <h1>Tablero</h1>
-  <div class="card shadow p-3 mb-5 bg-white rounded">
-    <%= line_chart Visit.group_by_day(:created_at, last: 7).count,
-      title: 'Cantidad de visitas por dia',  
-      colors: ['orange'],
-      xtitle: "Dias", 
-      ytitle: "visitas"
-          
-    %>
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow p-3 mb-5 bg-white rounded">
+        <%= line_chart Visit.group_by_day(:created_at, last: 7).count,
+          title: 'Cantidad de visitas por dia',  
+          colors: ['orange'],
+          xtitle: "Dias", 
+          ytitle: "visitas"
+              
+        %>
+      </div>
+    </div>
   </div>
   
   <div class="row">
@@ -36,70 +40,69 @@
   <hr class="my-5">
 
   <div class="row">
-    <div class="card shadow p-3 mb-5 bg-white rounded">
-      <div class="row mb-0">
-        <div class="col-10">
-          <h1>Ultimas 5 visitas</h1>
+    <div class="col-12">
+      <div class="card shadow p-3 mb-5 bg-white rounded">
+        <div class="row mb-0">
+          <div class="col-10">
+            <h1>Ultimas 5 visitas</h1>
+          </div>
+          <div class="col-2">
+            <%= link_to 'Agregar visita', new_visit_path, class: 'btn btn-success' %>
+          </div>
         </div>
-        <div class="col-2">
-          <%= link_to 'Agregar visita', new_visit_path, class: 'btn btn-success' %>
+        <hr>
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th>Fecha</th>
+                <th>Cedula</th>
+                <th>Nombre completo</th>
+                <th class="center-text">Piso</th>
+                <th class="center-text">Oficina</th>
+                <th class="center-text">Tem. Entrada</th>
+                <th class="center-text">Tem. Salida</th>
+                <th class="center-text">H. Entrada</th>
+                <th class="center-text">H. Salida</th>
+                <th class="center-text">Opciones</th>
+      
+              </tr>
+            </thead>
+            <% @visits.each do |visit| %>
+              <tr>
+                <td><%= visit.created_at.strftime("%x") %></td>
+                <td><%= link_to visit.visitor.dni, visitor_path(visit.visitor) %></td>
+                <td><%= link_to "#{visit.visitor.first_name} #{visit.visitor.last_name}", visitor_path(visit.visitor) %></td>
+                <td class="center-text"><%= link_to visit.floor.name, floor_path(visit.floor) %></td>
+                <td class="center-text"><%= link_to visit.office.name, office_path(visit.office) %></td>
+                <td class="center-text"><%= number_with_precision(visit.in_temperature, precision: 1) %>°</td>
+                <td class="center-text">
+                  <% if visit.out_temperature %>
+                    <%= number_with_precision(visit.out_temperature, precision: 1) %>°
+                  <% else %>
+                    <div class="badge bg-warning text-white">Sin tomar</div>  
+                  <% end %>
+                </td>
+                <td class="center-text"><%= visit.created_at.in_time_zone('America/Bogota').strftime("%R %P") %></td>
+                <td class="center-text">
+                  <% if visit.created_at == visit.updated_at %>
+                    <div class="badge bg-warning text-white">Sin tomar</div>  
+                  <% else %>
+                    <%= visit.updated_at.in_time_zone('America/Bogota').strftime("%R %P") %>
+                  <% end %>
+                </td>
+                <td class="center-text">
+                  <%= link_to 'Detalle', visit, class: 'btn btn-info' %>
+                </td>
+              </tr>
+            <% end %>
+            
+          </table>
         </div>
       </div>
-      <hr>
-      <div class="table-responsive">
-        <table class="table">
-          <thead class="thead-light">
-            <tr>
-              <th>Fecha</th>
-              <th>Cedula</th>
-              <th>Nombre completo</th>
-              <th class="center-text">Piso</th>
-              <th class="center-text">Oficina</th>
-              <th class="center-text">Tem. Entrada</th>
-              <th class="center-text">Tem. Salida</th>
-              <th class="center-text">H. Entrada</th>
-              <th class="center-text">H. Salida</th>
-              <th class="center-text">Opciones</th>
-    
-            </tr>
-          </thead>
-          <% @visits.each do |visit| %>
-            <tr>
-              <td><%= visit.created_at.strftime("%x") %></td>
-              <td><%= link_to visit.visitor.dni, visitor_path(visit.visitor) %></td>
-              <td><%= link_to "#{visit.visitor.first_name} #{visit.visitor.last_name}", visitor_path(visit.visitor) %></td>
-              <td class="center-text"><%= link_to visit.floor.name, floor_path(visit.floor) %></td>
-              <td class="center-text"><%= link_to visit.office.name, office_path(visit.office) %></td>
-              <td class="center-text"><%= number_with_precision(visit.in_temperature, precision: 1) %>°</td>
-              <td class="center-text">
-                <% if visit.out_temperature %>
-                  <%= number_with_precision(visit.out_temperature, precision: 1) %>°
-                <% else %>
-                  <div class="badge bg-warning text-white">Sin tomar</div>  
-                <% end %>
-              </td>
-              <td class="center-text"><%= visit.created_at.in_time_zone('America/Bogota').strftime("%R %P") %></td>
-              <td class="center-text">
-                <% if visit.created_at == visit.updated_at %>
-                  <div class="badge bg-warning text-white">Sin tomar</div>  
-                <% else %>
-                  <%= visit.updated_at.in_time_zone('America/Bogota').strftime("%R %P") %>
-                <% end %>
-              </td>
-              <td class="center-text">
-                <%= link_to 'Detalle', visit, class: 'btn btn-info' %>
-              </td>
-            </tr>
-          <% end %>
-          
-        </table>
-      </div>
+    </div>
   </div>
-  <div class="row">
-    <%= form_with(url: visit_per_day_path, method: 'get', remote: true) do %>
-      <%= date_field_tag :date  %>
-      <%= button_tag 'Buscar' %>
-    <% end %>
-</div>
 
+  
+</div>
 <%= javascript_pack_tag 'dashboard' %>

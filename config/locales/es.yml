@@ -51,6 +51,7 @@ es:
         in_temperature: 'Temperature de ingreso'
         out_temperature: 'Temperature de salida'
         status: 'Estado'
+        observation: 'Observaciones'
         
     errors:
       messages:

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_28_165518) do
+ActiveRecord::Schema.define(version: 2020_07_28_175009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(version: 2020_07_28_165518) do
     t.bigint "token_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "observation"
     t.index ["floor_id"], name: "index_visits_on_floor_id"
     t.index ["office_id"], name: "index_visits_on_office_id"
     t.index ["token_id"], name: "index_visits_on_token_id"

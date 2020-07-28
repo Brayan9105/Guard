@@ -1,0 +1,8 @@
+<div class="container-fluid"> 
+  <div class="row">
+    <%= form_with(url: visit_per_day_path, method: 'get', remote: true) do %>
+      <%= date_field_tag :date  %>
+      <%= button_tag 'Buscar' %>
+    <% end %>
+  </div>
+</div>
