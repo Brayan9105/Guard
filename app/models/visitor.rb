@@ -17,7 +17,7 @@ class Visitor < ApplicationRecord
     if visitor
       photoUrl = ""
       photoUrl = Rails.application.routes.url_helpers.rails_blob_path(visitor.photo, only_path: true) if visitor.photo.attached?
-      result[0] = {id: visitor.id, dni: visitor.dni, first_name: visitor.first_name, last_name: visitor.last_name, photo: photoUrl}
+      result[0] = {id: visitor.id, dni: visitor.dni, first_name: visitor.first_name, last_name: visitor.last_name, company: visitor.company ? visitor.company : "" ,photo: photoUrl}
     end
 
     result

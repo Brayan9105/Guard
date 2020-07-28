@@ -38,6 +38,7 @@ es:
         security: 'Arl'
         security_id: 'Arl'
         status: 'Estado'
+        company: 'Empresa'
       visit:
         floor: 'Piso'
         floor_id: 'Piso'

@@ -15,7 +15,7 @@
       </div>
   
       <div class="col-8">
-        <div class="row pt-5">
+        <div class="row pt-2">
           <div class="col-5">
             <label for="">Cedula</label>
             <input type="text" disabled="true" value= <%= @visitor.dni %> class="form-control"> 
@@ -36,6 +36,13 @@
           <div class="col-5">
             <label for="">Arl</label>
             <input type="text" disabled="true" value= <%= @visitor.security.name %> class="form-control"> 
+          </div>
+        </div>
+        <div class="row pt-5">
+          <div class="col-5">
+            <label for="">Empresa</label>
+            <input type="text" disabled="true" value= <%= @visitor.company %> class="form-control"> 
+
           </div>
         </div>
       </div>

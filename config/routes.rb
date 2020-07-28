@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'page#dashboard'
+  get 'visit_per_day', to: 'visits#visit_per_day', as: :visit_per_day
 
   resources :tokens, only: [:index, :show]
   

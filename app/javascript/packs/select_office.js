@@ -28,8 +28,10 @@ let tdPhotoText = document.getElementById('tdPhotoText')
 let tdPhoto = document.getElementById('tdPhoto')
 let tdDni = document.getElementById('tdDni')
 let tdFullname = document.getElementById('tdFullname')
+let tdCompany = document.getElementById('tdCompany')
 let tdOptions = document.getElementById('tdOptions')
 let btn = document.createElement('button')
+
 btn.innerText = 'Seleccionar'
 btn.id = 'btnAdd'
 btn.classList.add('btn')
@@ -43,8 +45,8 @@ btnSearch.addEventListener('click', () => {
     .then(data => {
       if(data.length != 0){
         data.forEach(visitor => {
+
           tdId.innerText = visitor.id
-          console.log(visitor.photo)
           if(visitor.photo == ""){
             tdPhotoText.innerText = "No tiene foto"
           }else{
@@ -58,6 +60,8 @@ btnSearch.addEventListener('click', () => {
           tdDni.innerText = visitor.dni;
           tdDni.style.verticalAlign = "middle"
           tdFullname.innerText = `${visitor.first_name} ${visitor.last_name}`;
+          tdCompany.innerText = visitor.company;
+          tdCompany.style.verticalAlign = "middle"
           tdFullname.style.verticalAlign = "middle"
           tdOptions.appendChild(btn)
           tdOptions.style.verticalAlign = "middle"
@@ -66,6 +70,7 @@ btnSearch.addEventListener('click', () => {
         tdDni.innerText = "No esta registrado";
         tdFullname.innerText = "";
         tdOptions.innerText = "";
+        tdCompany.innerText = "";
       }
     }); 
     btnSearch.disabled = false;

@@ -57,6 +57,11 @@ class VisitsController < ApplicationController
     @visit = Visit.find(params[:visit_id])
   end
 
+  def visit_per_day
+    @visits = Visit.where("created_at = ?", params[:date])
+    p @visits
+  end
+
   private
     def set_visit
       @visit = Visit.find(params[:id])
