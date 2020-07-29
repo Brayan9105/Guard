@@ -57,9 +57,36 @@ class VisitsController < ApplicationController
     @visit = Visit.find(params[:visit_id])
   end
 
+  def search_visits
+  end
+
   def visit_per_day
-    @visits = Visit.where("created_at = ?", params[:date])
-    p @visits
+    if (params[:date].to_date)
+      @obj = Visit.where("created_at between ? and ?", "#{params[:date].to_date} 00:00:00", "#{params[:date].to_date} 23:59:59")
+      respond_to do |format|
+        format.js { render partial: 'visits/history' }
+      end
+    else
+      @obj = []
+      respond_to do |format|
+        format.js { render partial: 'visits/history' }
+      end
+    end
+  end
+
+  def visit_per_user
+    if (params[:fullname].present?)
+      @obj = Visit.joins(:visitor).where("visitors.first_name LIKE ?", "#{params[:fullname]}%")
+      p @boj
+      respond_to do |format|
+        format.js { render partial: 'visits/history' }
+      end
+    else
+      @obj = []
+      respond_to do |format|
+        format.js { render partial: 'visits/history' }
+      end
+    end
   end
 
   private

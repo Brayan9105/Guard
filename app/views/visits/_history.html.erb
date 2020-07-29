@@ -1,0 +1,64 @@
+<div class="card shadow p-3 mb-5 bg-white rounded">
+  <div class="row mb-0">
+    <div class="col-10">
+      <h1>Historial de visitas</h1>
+    </div>
+    <div class="col-2">
+      <%= link_to 'Agregar visita', new_visit_path, class: 'btn btn-success' %>
+    </div>
+  </div>
+  <hr>
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>Fecha</th>
+          <th>Cedula</th>
+          <th>Nombre completo</th>
+          <th class="center-text">Piso</th>
+          <th class="center-text">Oficina</th>
+          <th class="center-text">Tem. Entrada</th>
+          <th class="center-text">Tem. Salida</th>
+          <th class="center-text">H. Entrada</th>
+          <th class="center-text">H. Salida</th>
+          <th class="center-text">Opciones</th>
+
+        </tr>
+      </thead>
+      <% if @obj.size > 0 %>
+        <% @obj.each do |visit| %>
+          <tr>
+            <td><%= visit.created_at.strftime("%x") %></td>
+            <td><%= link_to visit.visitor.dni, visitor_path(visit.visitor) %></td>
+            <td><%= link_to "#{visit.visitor.first_name} #{visit.visitor.last_name}", visitor_path(visit.visitor) %></td>
+            <td class="center-text"><%= link_to visit.floor.name, floor_path(visit.floor) %></td>
+            <td class="center-text"><%= link_to visit.office.name, office_path(visit.office) %></td>
+            <td class="center-text"><%= number_with_precision(visit.in_temperature, precision: 1) %>°</td>
+            <td class="center-text">
+              <% if visit.out_temperature %>
+                <%= number_with_precision(visit.out_temperature, precision: 1) %>°
+              <% else %>
+                <div class="badge bg-warning text-white">Sin tomar</div>  
+              <% end %>
+            </td>
+            <td class="center-text"><%= visit.created_at.in_time_zone('America/Bogota').strftime("%R %P") %></td>
+            <td class="center-text">
+              <% if visit.created_at == visit.updated_at %>
+                <div class="badge bg-warning text-white">Sin tomar</div>  
+              <% else %>
+                <%= visit.updated_at.in_time_zone('America/Bogota').strftime("%R %P") %>
+              <% end %>
+            </td>
+            <td class="center-text">
+              <%= link_to 'Detalle', visit, class: 'btn btn-info' %>
+            </td>
+          </tr>
+        <% end %>
+      <%else %>
+        <tr>
+          <td colspan="10"><h5 class="text-danger">No se encontraron datos</h5></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'page#dashboard'
-  get 'visit_per_day', to: 'visits#visit_per_day', as: :visit_per_day
+  
 
   resources :tokens, only: [:index, :show]
   
@@ -23,6 +23,10 @@ Rails.application.routes.draw do
   put 'give_out/:visit_id', to: 'visits#give_out'
   get 'visit_history', to: 'visits#visit_history', as: :visit_history
   get 'active_visit', to: 'visits#active_visit', as: :active_visit
+  get 'search_visits', to: 'visits#search_visits'
+
+  get 'visit_per_day', to: 'visits#visit_per_day', as: :visit_per_day
+  get 'visit_per_user', to: 'visits#visit_per_user', as: :visit_per_user
 
   # Admin routes
   devise_for :admin_users, ActiveAdmin::Devise.config
