@@ -7,7 +7,7 @@ class Visitor < ApplicationRecord
   has_many :visits
   has_one_attached :photo
 
-  validates :dni, :first_name, :last_name, :health_id, :security_id, presence: true
+  validates :dni, :first_name, :last_name, presence: true
   validates :dni, uniqueness: true
 
   def self.search(visitor_dni)

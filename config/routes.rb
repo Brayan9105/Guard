@@ -23,7 +23,8 @@ Rails.application.routes.draw do
   put 'give_out/:visit_id', to: 'visits#give_out'
   get 'visit_history', to: 'visits#visit_history', as: :visit_history
   get 'active_visit', to: 'visits#active_visit', as: :active_visit
-  get 'search_visits', to: 'visits#search_visits'
+  get 'search_by_date', to: 'visits#search_by_date'
+  get 'search_by_visitor', to: 'visits#search_by_visitor'
 
   get 'visit_per_day', to: 'visits#visit_per_day', as: :visit_per_day
   get 'visit_per_user', to: 'visits#visit_per_user', as: :visit_per_user

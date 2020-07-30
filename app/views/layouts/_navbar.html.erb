@@ -42,16 +42,25 @@
                 <li>
                     <%= link_to 'Visitas activas', active_visit_path %>
                 </li>
-                <li>
-                  <%= link_to 'Historial de visitas', visit_history_path %>
-                </li>
-                <li>
-                  <%= link_to 'Buscar visitas', search_visits_path %>
-                </li>
               </ul>
           </li>
           <li>
             <%= link_to 'Fichas', tokens_path %>
+          </li>
+          <hr class="separator">
+          <li>
+            <a href="#pageSubmenuSearch" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Buscar</a>
+            <ul class="collapse list-unstyled" id="pageSubmenuSearch">
+              <li>
+                <%= link_to 'Historial', visit_history_path %>
+              </li>
+              <li>
+                  <%= link_to 'Buscar por dia', search_by_date_path %>
+              </li>
+              <li>
+                <%= link_to 'Buscar por visitante', search_by_visitor_path %>
+              </li>
+            </ul>
           </li>
           <hr class="separator">
           <li class="mt-5">
