@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   get 'visit_per_day', to: 'visits#visit_per_day', as: :visit_per_day
   get 'visit_per_user', to: 'visits#visit_per_user', as: :visit_per_user
+  get 'get_report', to: 'visits#get_report', as: :get_report
 
   # Admin routes
   devise_for :admin_users, ActiveAdmin::Devise.config

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Fecha</Data></Cell>
+        <Cell><Data ss:Type="String">Cedula</Data></Cell>
+        <Cell><Data ss:Type="String">Nombre completo</Data></Cell>
+        <Cell><Data ss:Type="String">Piso</Data></Cell>
+        <Cell><Data ss:Type="String">Oficina</Data></Cell>
+        <Cell><Data ss:Type="String">Tem. Entrada</Data></Cell>
+        <Cell><Data ss:Type="String">Tem. Salida</Data></Cell>
+        <Cell><Data ss:Type="String">H. Entrada</Data></Cell>
+        <Cell><Data ss:Type="String">H. Salida</Data></Cell>
+      </Row>
+    <% @obj.each do |visit| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= visit.created_at.strftime("%x") %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= visit.visitor.dni %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= "#{visit.visitor.first_name} #{visit.visitor.last_name}" %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= visit.floor.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= visit.office.name %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= number_with_precision(visit.in_temperature, precision: 1) %>°</Data></Cell>
+        <Cell><Data ss:Type="Number"><%= number_with_precision(visit.out_temperature, precision: 1) %>°</Data></Cell>
+        <Cell><Data ss:Type="Number"><%= visit.created_at.in_time_zone('America/Bogota').strftime("%R %P") %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= visit.updated_at.in_time_zone('America/Bogota').strftime("%R %P") %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

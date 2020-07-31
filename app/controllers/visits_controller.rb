@@ -66,19 +66,18 @@ class VisitsController < ApplicationController
   def visit_per_day
     if (params[:date].to_date)
       @obj = Visit.where("created_at between ? and ?", "#{params[:date].to_date} 00:00:00", "#{params[:date].to_date} 23:59:59").order("created_at DESC")
-      respond_to do |format|
-        format.js { render partial: 'visits/history' }
-      end
     else
       @obj = []
-      respond_to do |format|
-        format.js { render partial: 'visits/history' }
-      end
+    end
+    
+    Visit.last_report(@obj)
+    respond_to do |format|
+      format.js { render partial: 'visits/history' }
     end
   end
 
   def visit_per_user
-    @obj = []
+    
     if (params[:fullname].present? && params[:startDate].present? && params[:endDate].present?)
       # Todos los campos
       @obj = Visit.joins(:visitor).where("visitors.first_name || ' ' || visitors.last_name ILIKE ? AND visits.created_at BETWEEN ? AND ?", "%#{params[:fullname]}%", "#{params[:startDate].to_date} 00:00:00", "#{params[:endDate].to_date} 23:59:59").order("created_at DESC")
@@ -100,10 +99,20 @@ class VisitsController < ApplicationController
     elsif(params[:endDate].present?)
       # todos antes de  fechas
       @obj = Visit.where("created_at <= ?", "#{params[:endDate].to_date} 23:59:59").order("created_at DESC")
+    else
+      @obj = []
     end
-
+    
+    Visit.last_report(@obj)
+    
     respond_to do |format|
       format.js { render partial: 'visits/history' }
+    end
+  end
+  
+  def get_report
+    respond_to do |format|
+      format.xls { send_data Visit.to_csv(col_sep: "\t")}
     end
   end
 
