@@ -16,9 +16,9 @@
           <tr>
             <th>Cedula</th>
             <th>Nombre completo</th>
-            <th class="center-text">Piso</th>
             <th class="center-text">Oficina</th>
             <th class="center-text">Ficha</th>
+            <th class="center-text">Empresa</th>
             <th class="center-text">Temp. Entrada</th>
             <th class="center-text">Hora entrada</th>
             <th class="center-text">Opciones</th>
@@ -28,9 +28,9 @@
           <tr>
             <td><%= link_to visit.visitor.dni, visitor_path(visit.visitor) %></td>
             <td><%= link_to "#{visit.visitor.first_name} #{visit.visitor.last_name}", visitor_path(visit.visitor) %></td>
-            <td class="center-text"><%= link_to visit.floor.name, floor_path(visit.floor) %></td>
             <td class="center-text"><%= link_to visit.office.name, office_path(visit.office) %></td>
             <td class="center-text"><%= link_to visit.token.name, token_path(visit.token) %></td>
+            <td class="center-text"><%= visit.visitor.company %></td>
             <td class="center-text"><%= number_with_precision(visit.in_temperature, precision: 1) %>°</td>
             <td class="center-text"><%= visit.created_at.in_time_zone('America/Bogota').strftime("%r") %></td>
             <td class="center-text">

@@ -2,11 +2,11 @@ class VisitsController < ApplicationController
   before_action :set_visit, only: [:show, :edit, :update, :destroy]
 
   def active_visit
-    @visits = Visit.all
+    @visits = Visit.all.order('created_at DESC')
   end
 
   def visit_history
-    @visits = Visit.all
+    @visits = Visit.all.order('created_at DESC')
   end
 
   def show
@@ -78,19 +78,32 @@ class VisitsController < ApplicationController
   end
 
   def visit_per_user
-    if (params[:fullname].present?)
-      # @obj = Visit.joins(:visitor).where("visitors.first_name ILIKE ? or visitors.last_name ILIKE ?", "#{params[:fullname]}%", "#{params[:fullname]}%")
-      # @obj = Visit.joins(:visitor).where("visitors.first_name || ' ' || visitors.last_name ILIKE ?", "%#{params[:fullname]}%")
-      @obj = Visit.joins(:visitor).where("visitors.first_name || ' ' || visitors.last_name ILIKE ?", "%#{params[:fullname]}%").order("created_at DESC")
-      p @boj
-      respond_to do |format|
-        format.js { render partial: 'visits/history' }
-      end
-    else
-      @obj = []
-      respond_to do |format|
-        format.js { render partial: 'visits/history' }
-      end
+    @obj = []
+    if (params[:fullname].present? && params[:startDate].present? && params[:endDate].present?)
+      # Todos los campos
+      @obj = Visit.joins(:visitor).where("visitors.first_name || ' ' || visitors.last_name ILIKE ? AND visits.created_at BETWEEN ? AND ?", "%#{params[:fullname]}%", "#{params[:startDate].to_date} 00:00:00", "#{params[:endDate].to_date} 23:59:59").order("created_at DESC")
+    elsif(params[:fullname].present? && !params[:startDate].present? && !params[:endDate].present?)
+      # solo el nombre
+      @obj = Visit.joins(:visitor).where("visitors.first_name || ' ' || visitors.last_name ILIKE ?", "%#{params[:fullname]}%").order("created_at DESC")      
+    elsif(params[:fullname].present? && params[:startDate].present?)
+      # Nombre y primera fecha
+      @obj = Visit.joins(:visitor).where("visitors.first_name || ' ' || visitors.last_name ILIKE ? AND visits.created_at >= ?", "%#{params[:fullname]}%", "#{params[:startDate].to_date} 00:00:00").order("created_at DESC")
+    elsif(params[:fullname].present? && params[:endDate].present?)
+      # Nombre y segunda fecha
+      @obj = Visit.joins(:visitor).where("visitors.first_name || ' ' || visitors.last_name ILIKE ? AND visits.created_at <= ?", "%#{params[:fullname]}%", "#{params[:endDate].to_date} 23:59:59").order("created_at DESC")
+    elsif(params[:startDate].present? && params[:endDate].present?)
+      # Dos fechas
+      @obj = Visit.where("created_at BETWEEN ? and ?", "#{params[:startDate].to_date} 00:00:00", "#{params[:endDate].to_date} 23:59:59").order("created_at DESC")
+    elsif(params[:startDate].present?)
+      # todos desde fechas
+      @obj = Visit.where("created_at >= ?", "#{params[:startDate].to_date} 00:00:00").order("created_at DESC")
+    elsif(params[:endDate].present?)
+      # todos antes de  fechas
+      @obj = Visit.where("created_at <= ?", "#{params[:endDate].to_date} 23:59:59").order("created_at DESC")
+    end
+
+    respond_to do |format|
+      format.js { render partial: 'visits/history' }
     end
   end
 

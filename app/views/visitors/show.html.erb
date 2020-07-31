@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <%= link_to 'Regresar', visitors_path, class: 'btn btn-secondary mb-5' %>
+  <%= link_to 'Regresar', url_for(:back), class: 'btn btn-secondary mb-5' %>
   <div class="card shadow p-3 mb-5 bg-white rounded">
     <h2>Datos del visitante</h2>
     <hr>
@@ -30,12 +30,12 @@
         <div class="row pt-5">
           <div class="col-5">
             <label for="">Eps</label>
-            <input type="text" disabled="true" value= <%= @visitor.health.name %> class="form-control"> 
+            <input type="text" disabled="true" value= '<%= @visitor.health.name %>' class="form-control"> 
           </div>
   
           <div class="col-5">
             <label for="">Arl</label>
-            <input type="text" disabled="true" value= <%= @visitor.security.name %> class="form-control"> 
+            <input type="text" disabled="true" value= '<%= @visitor.security.name %>' class="form-control"> 
           </div>
         </div>
         <div class="row pt-5">

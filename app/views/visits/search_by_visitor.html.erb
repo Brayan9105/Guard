@@ -3,24 +3,41 @@
 
   <div class="card shadow p-3 mb-3 bg-white rounded">
     <div class="row mb-3">
-        <div class="col-7">
+        <div class="col-12">
           
-            <label for="">Buscar por nombre</label>
-            <%= form_with(url: visit_per_user_path, method: 'get', remote: true) do |form| %>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-7">
-                    <%= form.text_field :fullname, class: 'form-control', placeholder: 'Digite el nombre del visitante' %>
-                  </div>
-                  <div class="col-3">
-                    <%= form.submit 'Buscar', class: 'btn btn-success' %>
-                  </div>
+          <div class="row">
+            <div class="col-3">
+              <label for="">Nombre o apellido</label>
+            </div>
+            <div class="col-3">
+              <label for="">Fecha de inicio</label>
+            </div>
+            <div class="col-3">
+              <label for="">Fecha final</label>
+            </div>
+              
+          </div>
+          <%= form_with(url: visit_per_user_path, method: 'get', remote: true) do |form| %>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-3">
+                  <%= form.text_field :fullname, class: 'form-control', placeholder: 'Digite el nombre del visitante' %>
                 </div>
-              </div>  
-            <% end %>
-          
+                <div class="col-3">
+                  <%= form.date_field :startDate, class: 'form-control' %>
+                </div>
+                <div class="col-3">
+                  <%= form.date_field :endDate, class: 'form-control' %>
+                </div>
+                <div class="col-3">
+                  <%= form.submit 'Buscar', class: 'btn btn-success' %>
+                </div>
+              </div>
+            </div>  
+          <% end %>
         </div>
     </div>
+    <p>Si deseas borrar la fecha has click sobre el campo y borra cada valor </p>
   </div>
 
   <div class="row">
