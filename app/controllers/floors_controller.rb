@@ -45,7 +45,7 @@ class FloorsController < ApplicationController
 
   private
     def set_floor
-      @floor = Floor.find(params[:id])
+      @floor = Floor.friendly.find(params[:id])
     end
 
     def floor_params
