@@ -53,7 +53,7 @@ class VisitorsController < ApplicationController
 
   private
     def set_visitor
-      @visitor = Visitor.find(params[:id])
+      @visitor = Visitor.friendly.find(params[:id])
     end
 
     def visitor_params

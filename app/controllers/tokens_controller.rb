@@ -4,7 +4,7 @@ class TokensController < ApplicationController
   end
 
   def show
-    @token = Token.find(params[:id])
+    @token = Token.friendly.find(params[:id])
     @visit = @token.visits.last
   end
 end
