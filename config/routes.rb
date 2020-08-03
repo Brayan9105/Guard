@@ -1,31 +1,31 @@
 Rails.application.routes.draw do
   root 'page#dashboard'
   
-
-  resources :tokens, only: [:index, :show]
+  scope(path_names: { new: 'nuevo', edit: 'editar'}) do
+    resources :tokens, only: [:index, :show], path: 'fichas'
+    resources :floors, path: 'pisos'
+    resources :securities, except: [:destroy], path: 'arl'
+    resources :healths, except: [:destroy], path: 'eps'
+    resources :offices, path: 'oficinas'
+    resources :visitors, path: 'visitantes'
+    resources :visits, except: [:index], path: 'visitas'
+  end
   
-  resources :securities, except: [:destroy]
-  resources :healths, except: [:destroy]
   
   # Floors routes
-  resources :floors
   get 'floor_offices/:id', to: 'offices#floor_offices'
-  get 'search_visitor/:dni', to: 'visitors#search_visitor'
   
-  # Offices routes
-  resources :offices
-
   # Visitors routes
-  resources :visitors
+  get 'search_visitor/:dni', to: 'visitors#search_visitor'
 
   # Visits routes
-  resources :visits, except: [:index]
   put 'give_out/:visit_id', to: 'visits#give_out'
-  get 'visit_history', to: 'visits#visit_history', as: :visit_history
-  get 'active_visit', to: 'visits#active_visit', as: :active_visit
-  get 'search_by_date', to: 'visits#search_by_date'
-  get 'search_by_visitor', to: 'visits#search_by_visitor'
-
+  get 'historial_visitas', to: 'visits#visit_history', as: :visit_history
+  get 'visitas_activas', to: 'visits#active_visit', as: :active_visit
+  get 'buscar_por_dia', to: 'visits#search_by_date', as: :search_by_date
+  get 'buscar_por_visitante', to: 'visits#search_by_visitor', as: :search_by_visitor
+  
+  # Reports
   get 'visit_per_day', to: 'visits#visit_per_day', as: :visit_per_day
   get 'visit_per_user', to: 'visits#visit_per_user', as: :visit_per_user
   get 'get_report', to: 'visits#get_report', as: :get_report
