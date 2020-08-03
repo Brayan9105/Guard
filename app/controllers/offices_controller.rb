@@ -51,7 +51,7 @@ class OfficesController < ApplicationController
 
   private
     def set_office
-      @office = Office.find(params[:id])
+      @office = Office.friendly.find(params[:id])
     end
 
     def office_params

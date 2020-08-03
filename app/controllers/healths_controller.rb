@@ -35,7 +35,7 @@ class HealthsController < ApplicationController
 
   private
   def set_health
-    @health = Health.find(params[:id])
+    @health = Health.friendly.find(params[:id])
   end
 
   def health_params

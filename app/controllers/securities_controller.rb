@@ -35,7 +35,7 @@ class SecuritiesController < ApplicationController
 
   private
   def set_security
-    @security = Security.find(params[:id])
+    @security = Security.friendly.find(params[:id])
   end
 
   def security_params

@@ -1,4 +1,7 @@
 class Visitor < ApplicationRecord
+  # extend FriendlyId
+  # friendly_id :name, use: :slugged
+  
   attribute :photo, :string, default: ''
   enum status: {available: 0, notavailable: 1}
 
