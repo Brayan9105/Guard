@@ -1,10 +1,10 @@
 @import 'bootstrap/dist/css/bootstrap';
 
-
-body {
-    font-family: 'Poppins', sans-serif;
+:root body {
+  margin: 0;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
     background: #fafafa;
-    font-size: 15px;
 }
 
 p {
