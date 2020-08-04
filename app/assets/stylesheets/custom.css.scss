@@ -131,3 +131,16 @@ a[data-toggle="collapse"] {
 .separator {
   background-color: #fff;
 }
+
+.next_page {
+  margin-left: 5px;
+}
+
+.current {
+  color: orange;
+  margin: 0 5px
+}
+
+a[href^="/historial"] {
+  margin: 0 5px;
+}

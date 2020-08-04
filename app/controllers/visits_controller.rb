@@ -6,7 +6,7 @@ class VisitsController < ApplicationController
   end
 
   def visit_history
-    @visits = Visit.all.order('created_at DESC')
+    @visits = Visit.paginate(page: params[:page]).order('created_at DESC')
   end
 
   def show

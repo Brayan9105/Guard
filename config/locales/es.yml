@@ -1,5 +1,8 @@
 
 es:
+  will_paginate:
+    previous_label: 'Anterior'
+    next_label: 'Siguiente'
   activerecord:
     models:
       floor: 'Piso'
