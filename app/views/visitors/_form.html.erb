@@ -46,6 +46,21 @@
       </div>
 
       <div class="form-group">
+        <%= form.label :user_category_id %>
+        <%= form.collection_select :user_category_id, UserCategory.all(), :id, :name, { :prompt => 'Seleccione la categoria' }, {class: 'form-control'} %> 
+      </div>
+
+      <div class="form-group">
+        <%= form.label :phone %>
+        <%= form.text_field :phone, class: 'form-control', placeholder: 'Digitar el numero telefonico' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :email %>
+        <%= form.text_field :email, class: 'form-control', placeholder: 'Digitar el correo electronico' %>
+      </div>
+
+      <div class="form-group">
         <%= form.submit class:'btn btn-success' %>
       </div>
     </div>

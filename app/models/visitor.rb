@@ -5,6 +5,7 @@ class Visitor < ApplicationRecord
   attribute :photo, :string, default: ''
   enum status: {available: 0, notavailable: 1}
 
+  belongs_to :user_category
   belongs_to :security
   belongs_to :health
   has_many :visits

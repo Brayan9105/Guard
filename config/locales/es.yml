@@ -42,6 +42,9 @@ es:
         security_id: 'Arl'
         status: 'Estado'
         company: 'Empresa'
+        phone: 'Telefono'
+        email: 'Correo'
+        user_category_id: 'Categoria'
       visit:
         floor: 'Piso'
         floor_id: 'Piso'

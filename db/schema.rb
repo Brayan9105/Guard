@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_03_180756) do
+ActiveRecord::Schema.define(version: 2020_08_19_161249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,12 @@ ActiveRecord::Schema.define(version: 2020_08_03_180756) do
     t.index ["slug"], name: "index_tokens_on_slug", unique: true
   end
 
+  create_table "user_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -144,6 +150,9 @@ ActiveRecord::Schema.define(version: 2020_08_03_180756) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "company"
     t.string "slug"
+    t.integer "user_category_id"
+    t.string "email"
+    t.string "phone"
     t.index ["health_id"], name: "index_visitors_on_health_id"
     t.index ["security_id"], name: "index_visitors_on_security_id"
     t.index ["slug"], name: "index_visitors_on_slug", unique: true
