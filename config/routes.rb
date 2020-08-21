@@ -24,10 +24,14 @@ Rails.application.routes.draw do
   get 'visitas_activas', to: 'visits#active_visit', as: :active_visit
   get 'buscar_por_dia', to: 'visits#search_by_date', as: :search_by_date
   get 'buscar_por_visitante', to: 'visits#search_by_visitor', as: :search_by_visitor
+  get 'buscar_por_piso', to: 'visits#search_by_floor', as: :search_by_floor
+  get 'buscar_por_oficina', to: 'visits#search_by_office', as: :search_by_office
   
   # Reports
   get 'visit_per_day', to: 'visits#visit_per_day', as: :visit_per_day
   get 'visit_per_user', to: 'visits#visit_per_user', as: :visit_per_user
+  get 'visit_per_floor', to: 'visits#visit_per_floor', as: :visit_per_floor
+  get 'visit_per_office', to: 'visits#visit_per_office', as: :visit_per_office
   get 'get_report', to: 'visits#get_report', as: :get_report
 
   # Admin routes

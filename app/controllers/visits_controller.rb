@@ -63,6 +63,9 @@ class VisitsController < ApplicationController
   def search_by_visitor
   end
 
+  def search_by_floor
+  end
+
   def visit_per_day
     if (params[:date].to_date)
       @obj = Visit.where("created_at between ? and ?", "#{params[:date].to_date} 00:00:00", "#{params[:date].to_date} 23:59:59").order("created_at DESC")
@@ -90,6 +93,64 @@ class VisitsController < ApplicationController
     elsif(params[:fullname].present? && params[:endDate].present?)
       # Nombre y segunda fecha
       @obj = Visit.joins(:visitor).where("visitors.first_name || ' ' || visitors.last_name ILIKE ? AND visits.created_at <= ?", "%#{params[:fullname]}%", "#{params[:endDate].to_date} 23:59:59").order("created_at DESC")
+    elsif(params[:startDate].present? && params[:endDate].present?)
+      # Dos fechas
+      @obj = Visit.where("created_at BETWEEN ? and ?", "#{params[:startDate].to_date} 00:00:00", "#{params[:endDate].to_date} 23:59:59").order("created_at DESC")
+    elsif(params[:startDate].present?)
+      # todos desde fechas
+      @obj = Visit.where("created_at >= ?", "#{params[:startDate].to_date} 00:00:00").order("created_at DESC")
+    elsif(params[:endDate].present?)
+      # todos antes de  fechas
+      @obj = Visit.where("created_at <= ?", "#{params[:endDate].to_date} 23:59:59").order("created_at DESC")
+    else
+      @obj = []
+    end
+    
+    Visit.last_report(@obj)
+    
+    respond_to do |format|
+      format.js { render partial: 'visits/history' }
+    end
+  end
+
+  def visit_per_floor
+    if (params[:startDate].present? && params[:endDate].present?)
+      # Todos los campos
+      @obj = Visit.joins(:floor).where("floors.id = ? AND visits.created_at BETWEEN ? AND ?", "#{params[:floor_id]}", "#{params[:startDate].to_date} 00:00:00", "#{params[:endDate].to_date} 23:59:59").order("created_at DESC")
+    elsif(!params[:startDate].present? && !params[:endDate].present?)
+      # solo el piso
+      @obj = Visit.joins(:floor).where("floors.id = ?", "#{params[:floor_id]}").order("created_at DESC")      
+    elsif(params[:startDate].present? && !params[:endDate].present?)
+      # Nombre y primera fecha
+      @obj = Visit.joins(:floor).where("floors.id = ? AND visits.created_at >= ?", "#{params[:floor_id]}", "#{params[:startDate].to_date} 00:00:00").order("created_at DESC")
+    elsif(!params[:startDate].present? && params[:endDate].present?)
+      # Nombre y segunda fecha
+      @obj = Visit.joins(:floor).where("floors.id = ? AND visits.created_at <= ?", "#{params[:floor_id]}", "#{params[:endDate].to_date} 23:59:59").order("created_at DESC")
+    else
+      @obj = []
+    end
+    
+    Visit.last_report(@obj)
+    
+    respond_to do |format|
+      format.js { render partial: 'visits/history' }
+    end
+  end
+
+  def visit_per_office
+    if (params[:office_id].present? && params[:startDate].present? && params[:endDate].present?)
+      # Todos los campos
+      p '----------- TODOS LOS CAMPOS -----------'
+      @obj = Visit.joins(:office).where("offices.id = ? AND visits.created_at BETWEEN ? AND ?", "#{params[:office_id]}", "#{params[:startDate].to_date} 00:00:00", "#{params[:endDate].to_date} 23:59:59").order("created_at DESC")
+    elsif(params[:office_id].present? && !params[:startDate].present? && !params[:endDate].present?)
+      # solo el nombre
+      @obj = Visit.joins(:office).where("offices.id = ?", "#{params[:office_id]}").order("created_at DESC")
+    elsif(params[:office_id].present? && params[:startDate].present?)
+      # Nombre y primera fecha
+      @obj = Visit.joins(:office).where("offices.id = ? AND visits.created_at >= ?", "#{params[:office_id]}", "#{params[:startDate].to_date} 00:00:00").order("created_at DESC")
+    elsif(params[:office_id].present? && params[:endDate].present?)
+      # Nombre y segunda fecha
+      @obj = Visit.joins(:office).where("offices.id = ? AND visits.created_at <= ?", "#{params[:office_id]}", "#{params[:endDate].to_date} 23:59:59").order("created_at DESC")
     elsif(params[:startDate].present? && params[:endDate].present?)
       # Dos fechas
       @obj = Visit.where("created_at BETWEEN ? and ?", "#{params[:startDate].to_date} 00:00:00", "#{params[:endDate].to_date} 23:59:59").order("created_at DESC")
