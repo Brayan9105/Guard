@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root 'page#dashboard'
+  get 'three_floor', to: 'page#three_floor'
+  get 'three_office', to: 'page#three_office'
   
   scope(path_names: { new: 'nuevo', edit: 'editar'}) do
     resources :tokens, only: [:index, :show], path: 'fichas'

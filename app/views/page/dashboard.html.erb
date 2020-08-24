@@ -17,24 +17,17 @@
   <div class="row">
     <div class="col-6">
       <div class="card shadow p-3 mb-5 bg-white rounded">
-        <canvas id=myChart></canvas>
+        <canvas id=floorChart></canvas>
       </div>
     </div>
 
     <div class="col-6">
       <div class="card shadow p-3 mb-5 bg-white rounded">
-        <%= pie_chart Visit.group(:office_id).count, 
-              title: 'Los 3 pisos mas visitados',
-              xtitle: 'piso',
-              ytitle: 'piso',
-              library: {
-                legend: {
-                  labelFormat: '{name} : {y} ({percentage}%)'
-                }
-              }
-        %>
+        <canvas id=officeChart></canvas>
       </div>
     </div>
+
+    
   </div>
 
   <hr class="my-5">
