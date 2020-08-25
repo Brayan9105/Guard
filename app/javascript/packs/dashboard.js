@@ -37,7 +37,6 @@ let chartQuery = (route, canvas, chartType, chartColor) => {
   })
 }
 
-
 chartQuery('/three_floor', floorChart, 'doughnut', colors1)
 chartQuery('/three_office', officeChart, 'doughnut', colors2)
 
