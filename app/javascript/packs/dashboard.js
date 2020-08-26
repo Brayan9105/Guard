@@ -9,7 +9,7 @@ let chartQuery = (route, canvas, chartType, chartColor) => {
   fetch(route)
   .then(response => response.json())
   .then(data => {
-    
+    console.log(data)
     data.forEach(row => {
       result[0].push(row.obj)
       result[1].push(row.count)

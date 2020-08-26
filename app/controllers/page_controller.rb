@@ -4,13 +4,13 @@ class PageController < ApplicationController
   end
 
   def three_floor
-    floors = ActiveRecord::Base.connection.execute("
-      SELECT floors.name as obj, COUNT(floor_id)
+    floors = ActiveRecord::Base.connection.execute(
+      "SELECT floors.name as obj, COUNT(floor_id)
       FROM visits
-      INNER JOIN floors on visits.floor_id = floor_id
+      INNER JOIN floors ON visits.floor_id = floors.id
       GROUP BY floors.name
-      ORDER BY count DESC LIMIT 3
-    ")
+      ORDER BY count DESC LIMIT 3"
+    )
     render json: floors
   end
 
@@ -18,7 +18,7 @@ class PageController < ApplicationController
     offices = ActiveRecord::Base.connection.execute("
       SELECT offices.name as obj, COUNT(office_id)
       FROM visits
-      INNER JOIN offices on visits.office_id = office_id
+      INNER JOIN offices on visits.office_id = offices.id
       GROUP BY offices.name
       ORDER BY count DESC LIMIT 3
     ")
