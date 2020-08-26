@@ -18,6 +18,7 @@
           <th class="center-text">Ficha</th>
           <th class="center-text">Hora de ingreso</th>
           <th class="center-text">Tem. Ingreso</th>
+          <th class="center-text">Sintomas</th>
           <th class="center-text">Opciones</th>
         </tr>
       </thead>
@@ -29,6 +30,7 @@
           <td class="center-text"><%= link_to visit.token.name, token_path(visit.token) %></td>
           <td class="center-text"><%= visit.created_at.in_time_zone('America/Bogota').strftime("%r") %></td>
           <td class="center-text"><%= visit.in_temperature %>°</td>
+          <td class="center-text"><%= visit.symptoms %></td>
           <td class="center-text"><%= link_to 'Ver visita', visit, class: 'btn btn-info' %></td>
         </tr>
       <% end %>

@@ -21,6 +21,7 @@
             <th class="center-text">Empresa</th>
             <th class="center-text">Temp. Entrada</th>
             <th class="center-text">Hora entrada</th>
+            <th class="center-text">Sintomas</th>
             <th class="center-text">Opciones</th>
           </tr>
         </thead>
@@ -33,6 +34,7 @@
             <td class="center-text"><%= visit.visitor.company %></td>
             <td class="center-text"><%= number_with_precision(visit.in_temperature, precision: 1) %>°</td>
             <td class="center-text"><%= visit.created_at.in_time_zone('America/Bogota').strftime("%r") %></td>
+            <td class="center-text"><%= visit.symptoms %></td>
             <td class="center-text">
               <%= link_to 'Dar salida', edit_visit_path(visit), class: 'btn btn-warning' %>
             </td>

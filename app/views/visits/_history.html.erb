@@ -28,6 +28,7 @@
           <th class="center-text">Tem. Salida</th>
           <th class="center-text">H. Entrada</th>
           <th class="center-text">H. Salida</th>
+          <th class="center-text">Sintomas</th>
           <th class="center-text">Opciones</th>
 
         </tr>
@@ -55,6 +56,9 @@
               <% else %>
                 <%= visit.updated_at.in_time_zone('America/Bogota').strftime("%R %P") %>
               <% end %>
+            </td>
+            <td class="center-text">
+              <%= visit.symptoms %>
             </td>
             <td class="center-text">
               <%= link_to 'Detalle', visit, class: 'btn btn-info' %>

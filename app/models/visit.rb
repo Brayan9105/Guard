@@ -13,7 +13,7 @@ class Visit < ApplicationRecord
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << ['#','Fecha', 'Cedula', 'Nombre completo', 'Piso', 'Oficina', 'Temp. Entrada', 'Temp. Salida', 'H. Entrada', 'H. Salida']
+      csv << ['#','Fecha', 'Cedula', 'Nombre completo', 'Piso', 'Oficina', 'Temp. Entrada', 'Temp. Salida', 'H. Entrada', 'H. Salida', 'Sintomas']
       @last_report.each_with_index do |visit, index|
          csv << [
                 index + 1,
@@ -25,7 +25,8 @@ class Visit < ApplicationRecord
                 visit.in_temperature,
                 visit.out_temperature,
                 visit.created_at.in_time_zone('America/Bogota').strftime("%R %P"),
-                visit.updated_at.in_time_zone('America/Bogota').strftime("%R %P")
+                visit.updated_at.in_time_zone('America/Bogota').strftime("%R %P"),
+                visit.symptoms
                 ]
       end
     end
