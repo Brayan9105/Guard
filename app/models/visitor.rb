@@ -15,15 +15,40 @@ class Visitor < ApplicationRecord
   validates :dni, uniqueness: true
 
   def self.search(visitor_dni)
-    visitor_dni = visitor_dni.strip
-    visitor = where(dni: visitor_dni).first
+    resultQuery1 = search_by_fullname(visitor_dni)
+    resultQuery2 = search_by_dni(visitor_dni)
+    p '-------------- LAST RESULT -------------------'
+    setting_data(resultQuery1, resultQuery2)
+  end
+
+  def self.search_by_fullname(dataQuery)
+    visitors = where("first_name || ' ' || last_name ILIKE ?", "%#{dataQuery}%")
+  end
+
+  def self.search_by_dni(dataQuery)
+    visitors = where("dni LIKE ?", "%#{dataQuery}%" )
+  end
+
+  def self.setting_data(query1, query2)
     result = []
-    if visitor
-      photoUrl = ""
-      photoUrl = Rails.application.routes.url_helpers.rails_blob_path(visitor.photo, only_path: true) if visitor.photo.attached?
-      result[0] = {id: visitor.id, dni: visitor.dni, first_name: visitor.first_name, last_name: visitor.last_name, company: visitor.company ? visitor.company : "" ,photo: photoUrl}
+    if query1.size > 0
+      query1.each do |row|
+        photoUrl = ""
+        photoUrl = Rails.application.routes.url_helpers.rails_blob_path(row.photo, only_path: true) if row.photo.attached?
+        result << {id: row.id, dni: row.dni, first_name: row.first_name, last_name: row.last_name, company: row.company ? row.company : "" ,photo: photoUrl}
+      end
     end
 
+    if query2.size > 0
+      query2.each do |row|
+        photoUrl = ""
+        photoUrl = Rails.application.routes.url_helpers.rails_blob_path(row.photo, only_path: true) if row.photo.attached?
+        result << {id: row.id, dni: row.dni, first_name: row.first_name, last_name: row.last_name, company: row.company ? row.company : "" ,photo: photoUrl}
+      end
+    end
+    
     result
   end
+
+
 end

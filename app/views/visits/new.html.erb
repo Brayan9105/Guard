@@ -9,7 +9,7 @@
         <h3>Buscar visitante</h3>
         <div class="row">
           <div class="col-6">
-            <input type="number" id="searchDni" placeholder="Digite la cedula del visitante" class="form-control">
+            <input type="text" id="searchDni" placeholder="Digite la cedula del visitante, nombre o apellido" class="form-control">
           </div>
           <div class="col-5">
             <button id="btnSearch" class="btn btn-info">Buscar</button>
@@ -19,7 +19,7 @@
       </div>
 
       <div class="table-responsive">
-        <table class="table">
+        <table class="table" id="visitorsTable">
           <thead class="thead-light">
             <tr>
               <th>Foto</th>
@@ -29,16 +29,8 @@
               <th>Opciones</th>
             </tr>
           </thead>
-          <tr>
-            <td hidden="true" id="tdId"></td>
-            <td id="tdPhotoText">
-              <img src="#" alt="" id="tdPhoto">
-            </td>
-            <td id="tdDni"></td>
-            <td id="tdFullname"></td> 
-            <td id="tdCompany"></td> 
-            <td id="tdOptions"></td> 
-          </tr>
+          <tbody id="visitorTBody">
+          </tbody>
         </table>
       </div>
     </div>
