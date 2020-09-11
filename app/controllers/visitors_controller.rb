@@ -3,6 +3,11 @@ class VisitorsController < ApplicationController
 
   def index
     @visitors = Visitor.all
+
+    respond_to do |format|
+      format.html {@visitors}
+      format.js { render}
+    end
   end
 
   def show

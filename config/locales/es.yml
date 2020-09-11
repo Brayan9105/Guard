@@ -45,6 +45,8 @@ es:
         phone: 'Telefono'
         email: 'Correo'
         user_category_id: 'Categoria'
+        user_category: 'Categoria'
+        
       visit:
         floor: 'Piso'
         floor_id: 'Piso'
@@ -58,6 +60,7 @@ es:
         out_temperature: 'Temperature de salida'
         status: 'Estado'
         observation: 'Observaciones'
+        symptoms: 'Sintomas'
         
     errors:
       messages:

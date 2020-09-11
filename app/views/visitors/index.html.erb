@@ -10,39 +10,6 @@
       </div>
     </div>
     <hr>
-  <div class="table-responsive">
-    <table class="table">
-      <thead class="thead-light">
-        <tr>
-          <th>Cedula</th>
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>Eps</th>
-          <th>Arl</th>
-          <th>Empresa</th>
-          <th colspan="2">Opciones</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @visitors.each do |visitor| %>
-          <tr>
-            <td><%= link_to visitor.dni, visitor %></td>
-            <td><%= link_to visitor.first_name, visitor %></td>
-            <td><%= visitor.last_name %></td>
-            <td><%= visitor.health.name %></td>
-            <td><%= visitor.security.name %></td>
-            <td><%= visitor.company %></td>
-            <td>
-              <%= link_to 'Editar', edit_visitor_path(visitor), class: 'btn btn-primary' %>
-              <%= link_to 'Eliminar', visitor, method: :delete, data: { confirm: 'Estas seguro de elimar este visitante?' }, class: 'btn btn-danger' %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-    
+    <%= render "visitor_table", obj: @visitors if @visitors%>
+  </div>  
 </div>
