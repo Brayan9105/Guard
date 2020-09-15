@@ -22,6 +22,7 @@ class VisitsController < ApplicationController
   def create
     @visit = Visit.new(visit_params)
     if @visit.save
+      @visit.visitor.notavailable!
       token = Token.find(params[:visit][:token_id])
       token.disable!
       flash[:success] = 'Se ha registrado exitosamente la visita.'
@@ -34,6 +35,7 @@ class VisitsController < ApplicationController
 
   def update
     if @visit.update(visit_params)
+      @visit.visitor.available!
       token = Token.find(params[:visit][:token_id])
       token.enable!
       @visit.out!

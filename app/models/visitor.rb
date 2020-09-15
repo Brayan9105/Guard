@@ -22,11 +22,11 @@ class Visitor < ApplicationRecord
   end
 
   def self.search_by_fullname(dataQuery)
-    visitors = where("first_name || ' ' || last_name ILIKE ?", "%#{dataQuery}%")
+    visitors = available.where("first_name || ' ' || last_name ILIKE ?", "%#{dataQuery}%")
   end
 
   def self.search_by_dni(dataQuery)
-    visitors = where("dni LIKE ?", "%#{dataQuery}%" )
+    visitors = available.where("dni LIKE ?", "%#{dataQuery}%" )
   end
 
   def self.setting_data(query1, query2)
